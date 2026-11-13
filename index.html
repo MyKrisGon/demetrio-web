@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Demetrio Entertainment</title>
-<meta name="description" content="Demetrio Entertainment produce, comercializa y opera espectáculos en Los Cabos y La Paz: stand-up, música electrónica, shows y eventos privados y corporativos.">
+<meta name="description" content="Demetrio Entertainment produce, comercializa y opera espectáculos en Los Cabos y La Paz: conciertos, fiestas con DJs, shows, eventos corporativos, bodas y celebraciones privadas.">
 <meta property="og:title" content="Demetrio Entertainment · Productora de espectáculos en Los Cabos y La Paz">
-<meta property="og:description" content="Producción, comercialización y operación de eventos en vivo en Baja California Sur.">
+<meta property="og:description" content="Conciertos, fiestas, shows, eventos corporativos y celebraciones en Los Cabos y La Paz. Producción, venta y operación de principio a fin.">
 <meta property="og:url" content="https://demetrio.mx/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_MX">
@@ -118,6 +118,18 @@ section{padding-block:clamp(72px,10vw,128px)}
 .marquee-track span{display:flex;align-items:center;gap:48px;white-space:nowrap}
 .marquee-track span::after{content:"";width:8px;height:8px;border-radius:50%;background:var(--reflector)}
 @keyframes roll{to{transform:translateX(-50%)}}
+
+/* QUÉ PRODUCIMOS */
+.types{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+@media (max-width:960px){.types{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:600px){.types{grid-template-columns:1fr}}
+.type{display:flex;flex-direction:column;gap:12px;padding:30px;border:1px solid var(--linea);border-radius:24px;background:var(--escenario);color:var(--hueso);text-decoration:none;transition:transform .2s ease,border-color .2s ease,background .2s ease}
+.type:hover{color:var(--hueso);border-color:var(--marca);transform:translateY(-3px);background:#1E1A21}
+.type-ic{width:40px;height:40px;color:var(--reflector)}
+.type h3{font-family:var(--display);font-weight:800;font-size:34px;line-height:.95;text-transform:uppercase;margin-top:6px}
+.type p{color:var(--polvo);font-size:16px}
+.type .tags{padding-top:4px;margin-top:0}
+.type-cta{margin-top:auto;padding-top:12px;display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:15px;color:var(--reflector)}
 
 /* AUDIENCIAS */
 .aud-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px;align-items:end;margin-bottom:48px}
@@ -305,11 +317,11 @@ footer{padding-block:64px 40px}
     <a class="logo" href="#inicio"><img src="assets/brand/logo-demetrio.png" alt="Demetrio Entertainment" width="184" height="38"></a>
     <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navLinks">Menú</button>
     <nav class="links" id="navLinks" aria-label="Principal">
+      <a href="#que-producimos">Qué producimos</a>
       <a href="#para-quien">Para quién</a>
       <a href="#servicios">Servicios</a>
       <a href="#proceso">Cómo trabajamos</a>
       <a href="#eventos">Eventos</a>
-      <a href="#formatos">Formatos</a>
       <a href="https://linktr.ee/demetrio.mx">Boletos</a>
       <a class="btn btn-primary" href="#cotiza">Cotiza tu evento</a>
     </nav>
@@ -323,7 +335,7 @@ footer{padding-block:64px 40px}
     <div>
       <p class="cue"><b>Productora de espectáculos</b> Los Cabos · La Paz</p>
       <h1>Tú pones la fecha.<span class="lit">Nosotros el show.</span></h1>
-      <p class="lead">Demetrio Entertainment produce, vende y opera eventos en vivo en Baja California Sur: giras de stand-up, fiestas con DJs internacionales, shows, eventos de marca y celebraciones privadas. Una sola contraparte, desde que nace la idea hasta que se apagan las luces.</p>
+      <p class="lead">Demetrio Entertainment produce, vende y opera eventos en vivo en Baja California Sur: conciertos, fiestas con DJs internacionales, shows y stand-up, eventos corporativos, bodas y celebraciones privadas. Una sola contraparte, desde que nace la idea hasta que se apagan las luces.</p>
       <div class="hero-ctas">
         <a class="btn btn-primary" href="#cotiza">Cotiza tu evento
           <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
@@ -351,17 +363,75 @@ footer{padding-block:64px 40px}
 
 <div class="marquee" aria-hidden="true">
   <div class="marquee-track">
-    <span>Stand-up en español</span><span>English comedy night</span><span>Música electrónica</span><span>Shows y giras</span><span>Eventos corporativos</span><span>Fiestas privadas</span><span>Activaciones de marca</span><span>Open Mic</span>
-    <span>Stand-up en español</span><span>English comedy night</span><span>Música electrónica</span><span>Shows y giras</span><span>Eventos corporativos</span><span>Fiestas privadas</span><span>Activaciones de marca</span><span>Open Mic</span>
+    <span>Conciertos</span><span>Fiestas con DJ</span><span>Eventos corporativos</span><span>Bodas y celebraciones</span><span>Shows</span><span>Stand-up</span><span>Activaciones de marca</span><span>Festivales</span>
+    <span>Conciertos</span><span>Fiestas con DJ</span><span>Eventos corporativos</span><span>Bodas y celebraciones</span><span>Shows</span><span>Stand-up</span><span>Activaciones de marca</span><span>Festivales</span>
   </div>
 </div>
 
-<!-- CUE 02 · PARA QUIÉN -->
+
+<!-- QUÉ PRODUCIMOS -->
+<section id="que-producimos">
+  <div class="wrap">
+    <div class="aud-head">
+      <div>
+        <p class="cue"><b>Cue 02</b> Qué producimos</p>
+        <h2 class="h2" style="margin-top:20px">Si se vive en vivo, lo producimos</h2>
+      </div>
+      <p class="lead">Seis tipos de evento, un mismo equipo. Elige el tuyo y armamos la propuesta.</p>
+    </div>
+    <div class="types">
+      <a class="type" href="#cotiza" data-ev="s-vivo">
+        <svg class="type-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+        <h3>Conciertos y música en vivo</h3>
+        <p>Bandas, solistas y sesiones acústicas, del restobar al escenario grande.</p>
+        <div class="tags"><span>Bandas</span><span>Acústico</span><span>THE JAM</span></div>
+        <span class="type-cta">Cotizar este evento <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="type" href="#cotiza" data-ev="s-dj">
+        <svg class="type-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2.5"/><path d="M12 3a9 9 0 0 1 9 9"/></svg>
+        <h3>Fiestas y música electrónica</h3>
+        <p>Day parties, beach clubs y noches con DJs nacionales e internacionales.</p>
+        <div class="tags"><span>Day party</span><span>Beach club</span><span>Line-up</span></div>
+        <span class="type-cta">Cotizar este evento <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="type" href="#cotiza" data-ev="s-comedia">
+        <svg class="type-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v4M8 22h8"/></svg>
+        <h3>Shows y comedia</h3>
+        <p>Stand-up en español e inglés, espectáculos y giras con artistas reconocidos.</p>
+        <div class="tags"><span>Stand-up</span><span>Espectáculo</span><span>Gira</span></div>
+        <span class="type-cta">Cotizar este evento <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="type" href="#cotiza" data-ev="s-corp">
+        <svg class="type-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 13h18"/></svg>
+        <h3>Eventos corporativos</h3>
+        <p>Convenciones, grupos de incentivo, lanzamientos y fiestas de fin de año.</p>
+        <div class="tags"><span>Convención</span><span>Incentivo</span><span>Lanzamiento</span></div>
+        <span class="type-cta">Cotizar este evento <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="type" href="#cotiza" data-ev="s-boda">
+        <svg class="type-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.4 5.2L20 9l-4.2 3.9L17 19l-5-2.8L7 19l1.2-6.1L4 9l5.6-.8z"/></svg>
+        <h3>Bodas y celebraciones</h3>
+        <p>Música, show y producción para bodas, aniversarios y fiestas privadas.</p>
+        <div class="tags"><span>Boda</span><span>Aniversario</span><span>Privado</span></div>
+        <span class="type-cta">Cotizar este evento <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <a class="type" href="#cotiza" data-ev="s-fest">
+        <svg class="type-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 22V4M4 4h13l-2.5 4.5L17 13H4"/></svg>
+        <h3>Festivales y marcas</h3>
+        <p>Festivales, activaciones y experiencias con patrocinadores.</p>
+        <div class="tags"><span>Festival</span><span>Activación</span><span>Patrocinio</span></div>
+        <span class="type-cta">Cotizar este evento <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CUE 03 · PARA QUIÉN -->
 <section id="para-quien">
   <div class="wrap">
     <div class="aud-head">
       <div>
-        <p class="cue"><b>Cue 02</b> Para quién trabajamos</p>
+        <p class="cue"><b>Cue 03</b> Para quién trabajamos</p>
         <h2 class="h2" style="margin-top:20px">Cada evento empieza con alguien que necesita algo</h2>
       </div>
       <p class="lead">Elige tu caso y te decimos cómo te ayudamos.</p>
@@ -381,7 +451,7 @@ footer{padding-block:64px 40px}
       </div>
       <ul class="checks">
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><strong>Calendario trimestral</strong><span>Fechas fijas con anticipación, no shows sueltos.</span></div></li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><strong>Artistas probados</strong><span>Comediantes y DJs que ya mueven público.</span></div></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><strong>Artistas probados</strong><span>Músicos, DJs, shows y comediantes que ya mueven público.</span></div></li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><strong>Promoción y boletaje</strong><span>Carteles, redes, pauta y venta en línea a cargo nuestro.</span></div></li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><strong>Reporte después de cada fecha</strong><span>Asistencia, ventas y propuesta para la siguiente.</span></div></li>
       </ul>
@@ -404,12 +474,12 @@ footer{padding-block:64px 40px}
     <div class="panel" role="tabpanel" id="p-privado" aria-labelledby="t-privado" hidden>
       <div>
         <h3>Tu evento, con el show resuelto</h3>
-        <p class="pain">Convenciones, grupos de incentivo, fiestas de empresa, aniversarios y celebraciones. Te armamos el entretenimiento completo y lo coordinamos con tu venue o tu wedding planner.</p>
+        <p class="pain">Convenciones, grupos de incentivo, fiestas de empresa, bodas, aniversarios y celebraciones. Te armamos el entretenimiento y la producción completa, y lo coordinamos con tu venue o tu wedding planner.</p>
         <a class="btn btn-primary" href="#cotiza" data-pick="privado">Cotizar mi evento</a>
       </div>
       <ul class="checks">
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><strong>Comediantes en español o inglés</strong><span>Rutinas a la medida del público.</span></div></li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><strong>DJs y música en vivo</strong><span>De la cena a la pista.</span></div></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><strong>Música en vivo y DJs</strong><span>De la cena a la pista.</span></div></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><strong>Shows y artistas invitados</strong><span>Espectáculos y comedia, en español o inglés.</span></div></li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><strong>Producción técnica</strong><span>Audio, iluminación, escenario y staff.</span></div></li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><strong>Una sola persona a cargo</strong><span>Tú hablas con uno; nosotros coordinamos a todos.</span></div></li>
       </ul>
@@ -418,14 +488,14 @@ footer{padding-block:64px 40px}
     <div class="panel" role="tabpanel" id="p-talento" aria-labelledby="t-talento" hidden>
       <div>
         <h3>Súbete a nuestro escenario</h3>
-        <p class="pain">Si eres comediante o músico y quieres hacer fechas en Los Cabos y La Paz, o eres de aquí y quieres empezar, tenemos lugar para ti.</p>
+        <p class="pain">Músicos, bandas, DJs, comediantes y artistas de show. Si quieres hacer fechas en Los Cabos y La Paz, o eres de aquí y quieres empezar, tenemos lugar para ti.</p>
         <a class="btn btn-primary" href="#cotiza" data-pick="talento">Mandar mi material</a>
       </div>
       <ul class="checks">
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><strong>Giras por el circuito</strong><span>Dos plazas en una misma gira.</span></div></li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><strong>Open Mic cada 15 días</strong><span>Con presentador, tiempos y reglas claras.</span></div></li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><strong>Concurso de nuevos talentos</strong><span>$1,000 MXN y abrir el siguiente show.</span></div></li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><strong>THE JAM</strong><span>Sesiones para músicos locales.</span></div></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><strong>Fechas en dos plazas</strong><span>Los Cabos y La Paz en una misma gira.</span></div></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><strong>Eventos privados y corporativos</strong><span>Te recomendamos con nuestros clientes.</span></div></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><strong>THE JAM para músicos</strong><span>Sesiones en vivo y colaboraciones.</span></div></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><strong>Open Mic y concurso</strong><span>Para comediantes que van empezando.</span></div></li>
       </ul>
     </div>
   </div>
@@ -434,7 +504,7 @@ footer{padding-block:64px 40px}
 <!-- CUE 03 · SERVICIOS -->
 <section class="svc" id="servicios">
   <div class="wrap">
-    <p class="cue"><b>Cue 03</b> Servicios</p>
+    <p class="cue"><b>Cue 04</b> Servicios</p>
     <h2 class="h2" style="margin-top:20px;max-width:16ch">Todo lo que pasa antes, durante y después</h2>
     <div class="svc-grid">
       <div class="svc-item"><span class="num">01</span><h3>Producción</h3><p>Diseñamos el evento y lo armamos.</p><ul><li>Booking de artistas</li><li>Concepto y formato</li><li>Audio, luz y escenario</li></ul></div>
@@ -448,26 +518,26 @@ footer{padding-block:64px 40px}
 <!-- CUE 04 · ESCALA -->
 <section id="escala">
   <div class="wrap">
-    <p class="cue"><b>Cue 04</b> Del tamaño que necesites</p>
+    <p class="cue"><b>Cue 05</b> Del tamaño que necesites</p>
     <h2 class="h2" style="margin-top:20px">Pequeño, mediano o grande. De todo a todo.</h2>
     <div class="scale">
       <article class="scale-card">
         <div class="bars" aria-hidden="true"><i class="on" style="height:30%"></i><i style="height:55%"></i><i style="height:80%"></i><i style="height:100%"></i></div>
         <h3>Íntimo</h3>
-        <p>Noches de comedia, cenas show y sesiones acústicas. Ideal para probar un formato o fidelizar a tus clientes.</p>
-        <div class="tags"><span>Restobar</span><span>Open Mic</span><span>Cena show</span></div>
+        <p>Cenas show, sesiones acústicas, noches de comedia y reuniones privadas. Ideal para probar un formato o consentir a tus clientes.</p>
+        <div class="tags"><span>Cena show</span><span>Acústico</span><span>Reunión privada</span></div>
       </article>
       <article class="scale-card">
         <div class="bars" aria-hidden="true"><i class="on" style="height:30%"></i><i class="on" style="height:55%"></i><i style="height:80%"></i><i style="height:100%"></i></div>
         <h3>Mediano</h3>
-        <p>Shows con artista invitado, fiestas en beach club y eventos de empresa con producción completa.</p>
-        <div class="tags"><span>Beach club</span><span>Corporativo</span><span>Gira 2 plazas</span></div>
+        <p>Fiestas en beach club, bodas, eventos de empresa y shows con artista invitado, con producción completa.</p>
+        <div class="tags"><span>Beach club</span><span>Boda</span><span>Corporativo</span></div>
       </article>
       <article class="scale-card">
         <div class="bars" aria-hidden="true"><i class="on" style="height:30%"></i><i class="on" style="height:55%"></i><i class="on" style="height:80%"></i><i class="on" style="height:100%"></i></div>
         <h3>Grande</h3>
-        <p>Teatros, festivales y artistas de primer nivel, con boletaje, patrocinadores y operación a gran escala.</p>
-        <div class="tags"><span>Teatro</span><span>Festival</span><span>Boletaje</span></div>
+        <p>Conciertos, festivales y teatros con artistas de primer nivel, boletaje, patrocinadores y operación a gran escala.</p>
+        <div class="tags"><span>Concierto</span><span>Festival</span><span>Teatro</span></div>
       </article>
     </div>
   </div>
@@ -477,7 +547,7 @@ footer{padding-block:64px 40px}
 <section id="proceso" style="padding-top:0">
   <div class="wrap ros">
     <div class="ros-sticky">
-      <p class="cue"><b>Cue 05</b> Cómo trabajamos</p>
+      <p class="cue"><b>Cue 06</b> Cómo trabajamos</p>
       <h2 class="h2" style="margin-top:20px">La corrida del show</h2>
       <p class="lead" style="margin-top:20px">Así se ve un evento con nosotros, de la primera llamada al reporte final. Los tiempos son de referencia y se ajustan al tamaño del evento.</p>
       <a class="btn btn-primary" href="#cotiza" style="margin-top:28px">Empezar con el brief</a>
@@ -496,18 +566,10 @@ footer{padding-block:64px 40px}
 <!-- CUE 06 · EVENTOS -->
 <section id="eventos" style="border-top:1px solid var(--linea)">
   <div class="wrap">
-    <p class="cue"><b>Cue 06</b> Eventos</p>
+    <p class="cue"><b>Cue 07</b> Eventos</p>
     <h2 class="h2" style="margin-top:20px">Noches que ya pasaron</h2>
+    <p class="lead" style="margin-top:20px">Música electrónica, shows y comedia en Los Cabos y La Paz.</p>
     <div class="cases">
-      <article class="case">
-        <div class="case-img"><img src="assets/fandango-deanda-escobedo.jpg" alt="Cartel del show de Alexis de Anda y Mónica Escobedo en Casa Fandango, La Paz" loading="lazy"></div>
-        <div>
-          <div class="meta"><span>Stand-up comedy</span><span>La Paz</span></div>
-          <h3>Alexis de Anda + Mónica Escobedo</h3>
-          <p>Dos comediantes reconocidas a nivel nacional, juntas en una sola noche en Casa Fandango, un restobar y centro de shows de La Paz. Un formato doble que le da al público dos estilos distintos por el mismo boleto.</p>
-          <dl><div><dt>Venue</dt><dd>Casa Fandango</dd></div><div><dt>Formato</dt><dd>Show doble</dd></div><div><dt>Boletos</dt><dd>Venta en línea</dd></div></dl>
-        </div>
-      </article>
       <article class="case">
         <div class="case-img"><img src="assets/white-mirage-marella.jpg" alt="Cartel de White Mirage con Tom Breu en Marella Cabo" loading="lazy"></div>
         <div>
@@ -518,20 +580,29 @@ footer{padding-block:64px 40px}
         </div>
       </article>
       <article class="case">
-        <div class="case-img"><img src="assets/cojo-feliz-teatro-juarez.jpg" alt="Cartel de Cojo Feliz, La Peor Pluma de México, en Teatro Juárez" loading="lazy"></div>
+        <div class="case-img"><img src="assets/despechadisima-bocca-morada.jpg" alt="Cartel de Despechadísima Tour con Hugo Blanquet y Miss Diamond en Bocca Morada" loading="lazy"></div>
+        <div>
+          <div class="meta"><span>Show</span><span>Los Cabos</span></div>
+          <h3>Despechadísima Tour</h3>
+          <p>Hugo Blanquet y Miss Diamond con un show de despecho, música y personaje en Bocca Morada, en la Marina de Cabo San Lucas. Preventa en línea y venta el día del evento.</p>
+          <dl><div><dt>Venue</dt><dd>Bocca Morada</dd></div><div><dt>Formato</dt><dd>Show en vivo</dd></div><div><dt>Boletos</dt><dd>Preventa y taquilla</dd></div></dl>
+        </div>
+      </article>
+      <article class="case">
+        <div class="case-img"><img src="assets/fandango-deanda-escobedo.jpg" alt="Cartel del show de Alexis de Anda y Mónica Escobedo en Casa Fandango, La Paz" loading="lazy"></div>
         <div>
           <div class="meta"><span>Stand-up comedy</span><span>La Paz</span></div>
-          <h3>Cojo Feliz en Teatro Juárez</h3>
-          <p>La gira "La Peor Pluma de México" en un teatro, con boletaje en línea y promoción con otras productoras de la región.</p>
-          <dl><div><dt>Venue</dt><dd>Teatro Juárez</dd></div><div><dt>Formato</dt><dd>Teatro</dd></div><div><dt>Boletos</dt><dd>Arema.mx</dd></div></dl>
+          <h3>Alexis de Anda + Mónica Escobedo</h3>
+          <p>Dos comediantes reconocidas a nivel nacional, juntas en una sola noche en Casa Fandango, un restobar y centro de shows de La Paz. Un formato doble que le da al público dos estilos distintos por el mismo boleto.</p>
+          <dl><div><dt>Venue</dt><dd>Casa Fandango</dd></div><div><dt>Formato</dt><dd>Show doble</dd></div><div><dt>Boletos</dt><dd>Venta en línea</dd></div></dl>
         </div>
       </article>
     </div>
 
     <div class="archive">
-      <h3>También en nuestra historia</h3>
+      <h3>Más eventos</h3>
       <div class="arow"><img src="assets/ofarrill-maria-corona.jpg" alt="" loading="lazy"><div><strong>Ricardo O’Farrill: Corto Circuito, La Última Ronda</strong><span>María Corona · Los Cabos</span></div><em>Stand-up</em></div>
-      <div class="arow"><img src="assets/despechadisima-bocca-morada.jpg" alt="" loading="lazy"><div><strong>Despechadísima Tour: Hugo Blanquet &amp; Miss Diamond</strong><span>Bocca Morada · Los Cabos</span></div><em>Show</em></div>
+      <div class="arow"><img src="assets/cojo-feliz-teatro-juarez.jpg" alt="" loading="lazy"><div><strong>Cojo Feliz: La Peor Pluma de México</strong><span>Teatro Juárez · La Paz</span></div><em>Stand-up</em></div>
       <div class="arow"><img src="assets/omar-moreno-la-tuna.jpg" alt="" loading="lazy"><div><strong>Omar Moreno: Tour 2026</strong><span>La Tuna Restaurant &amp; Bar</span></div><em>Stand-up</em></div>
     </div>
   </div>
@@ -540,12 +611,12 @@ footer{padding-block:64px 40px}
 <!-- CUE 07 · FORMATOS PROPIOS -->
 <section class="props" id="formatos">
   <div class="wrap">
-    <p class="cue"><b>Cue 07</b> Formatos propios</p>
-    <h2 class="h2" style="margin-top:20px;max-width:18ch">Shows que creamos y que se repiten</h2>
-    <p class="lead" style="margin-top:20px">Además de traer artistas, creamos formatos con identidad propia que se repiten cada temporada y crean público fiel.</p>
+    <p class="cue"><b>Cue 08</b> Formatos propios</p>
+    <h2 class="h2" style="margin-top:20px;max-width:18ch">Formatos que creamos y se repiten</h2>
+    <p class="lead" style="margin-top:20px">Además de producir eventos para otros, creamos formatos propios de música, comedia y talento local que se repiten cada temporada y crean público fiel.</p>
     <div class="props-grid">
       <article class="prop">
-        <span class="kind">Circuito semanal</span>
+        <span class="kind">Circuito semanal · música, comedia y shows</span>
         <h3>Los Cabos ⇄ La Paz</h3>
         <p>Una gira que rota cada cuatro semanas. Cada show se presenta en las dos plazas.</p>
         <div class="cycle">
@@ -554,6 +625,11 @@ footer{padding-block:64px 40px}
           <div><b>SEM 3</b>DJ Pro</div>
           <div><b>SEM 4</b>Show especial</div>
         </div>
+      </article>
+      <article class="prop">
+        <span class="kind">Música en vivo</span>
+        <h3>THE JAM</h3>
+        <p>Sesiones en vivo para que los músicos locales se junten, colaboren y formen comunidad. De aquí salen los músicos para nuestras producciones.</p>
       </article>
       <article class="prop">
         <span class="kind">Stand-up</span>
@@ -565,11 +641,6 @@ footer{padding-block:64px 40px}
         <h3>Open Mic + Concurso</h3>
         <p>Un open mic con reglas claras y un concurso con premio de $1,000 MXN. Quien gana abre el siguiente show profesional.</p>
       </article>
-      <article class="prop">
-        <span class="kind">Música en vivo</span>
-        <h3>THE JAM</h3>
-        <p>Sesiones en vivo para que los músicos locales se junten, colaboren y formen comunidad. De aquí salen los músicos para nuestras producciones.</p>
-      </article>
     </div>
   </div>
 </section>
@@ -577,7 +648,7 @@ footer{padding-block:64px 40px}
 <!-- CUE 08 · POR QUÉ -->
 <section id="por-que">
   <div class="wrap">
-    <p class="cue"><b>Cue 08</b> Por qué Demetrio</p>
+    <p class="cue"><b>Cue 09</b> Por qué Demetrio</p>
     <h2 class="h2" style="margin-top:20px">Conocemos el escenario. Y el de al lado.</h2>
     <div class="why">
       <div><h3>Dos plazas, un solo equipo</h3><p>Trabajamos en Los Cabos y en La Paz. Un artista puede hacer dos fechas en la misma gira y repartir los costos de traslado.</p></div>
@@ -591,13 +662,14 @@ footer{padding-block:64px 40px}
 <!-- CUE 09 · FAQ -->
 <section id="preguntas" style="padding-top:0">
   <div class="wrap">
-    <p class="cue"><b>Cue 09</b> Preguntas frecuentes</p>
+    <p class="cue"><b>Cue 10</b> Preguntas frecuentes</p>
     <h2 class="h2" style="margin-top:20px;margin-bottom:32px">Antes de levantar el telón</h2>
     <div class="faq">
-      <details><summary>¿Con cuánta anticipación debo contactarlos?</summary><p>Para un show con artista invitado, lo ideal es de 6 a 8 semanas antes. Para un evento privado pequeño podemos trabajar con menos tiempo, según la disponibilidad del artista.</p></details>
+      <details><summary>¿Qué tipo de eventos producen?</summary><p>De todo: conciertos, fiestas con DJ, shows y stand-up, eventos corporativos, bodas, celebraciones privadas, festivales y activaciones de marca. Pequeños, medianos y grandes.</p></details>
+      <details><summary>¿Con cuánta anticipación debo contactarlos?</summary><p>Para un concierto, show o fiesta con artista invitado, lo ideal es de 6 a 8 semanas antes. Para un evento privado pequeño podemos trabajar con menos tiempo, según la disponibilidad del artista.</p></details>
       <details><summary>¿Qué incluye una cotización?</summary><p>Formato propuesto, opciones de artistas, producción técnica, promoción, operación y el modelo de ingresos que más te convenga: taquilla, renta, reparto con el venue o patrocinio.</p></details>
       <details><summary>¿Ustedes venden los boletos?</summary><p>Sí. Operamos la venta en línea con boleteras de la región y la promoción en redes. Para eventos privados no hace falta boletaje.</p></details>
-      <details><summary>¿Hacen eventos en inglés?</summary><p>Sí. Tenemos una línea de comedia en inglés pensada para residentes extranjeros, visitantes y grupos corporativos internacionales.</p></details>
+      <details><summary>¿Hacen eventos para público extranjero?</summary><p>Sí. Producimos eventos en inglés o bilingües para residentes extranjeros, turistas y grupos corporativos internacionales, con música, shows y comedia en inglés.</p></details>
       <details><summary>¿Puedo proponer a mi propio artista?</summary><p>Claro. Nosotros nos encargamos de la producción, la venta y la operación alrededor del artista que tú elijas.</p></details>
     </div>
   </div>
@@ -607,7 +679,7 @@ footer{padding-block:64px 40px}
 <section class="quote" id="cotiza">
   <div class="wrap quote-grid">
     <div>
-      <p class="cue"><b>Cue 10</b> Cotiza tu evento</p>
+      <p class="cue"><b>Cue 11</b> Cotiza tu evento</p>
       <h2 class="h2" style="margin-top:20px">Cuéntanos tu idea. Te respondemos con una propuesta.</h2>
       <p class="lead" style="margin-top:20px">Son tres pasos y menos de un minuto. Al final se abre WhatsApp con tu mensaje ya escrito, solo le das enviar.</p>
       <div class="direct">
@@ -624,17 +696,20 @@ footer{padding-block:64px 40px}
       <fieldset class="step" data-step="1">
         <legend>¿Qué necesitas?</legend>
         <div class="choices">
-          <div class="choice"><input type="radio" name="tipo" id="c-venue" value="Programación para mi venue"><label for="c-venue">Programación para mi venue<small>Shows recurrentes</small></label></div>
-          <div class="choice"><input type="radio" name="tipo" id="c-privado" value="Evento privado o corporativo"><label for="c-privado">Evento privado o corporativo<small>Empresa, celebración, grupo</small></label></div>
+          <div class="choice"><input type="radio" name="tipo" id="c-venue" value="Programación para mi venue"><label for="c-venue">Programación para mi venue<small>Shows y fiestas recurrentes</small></label></div>
+          <div class="choice"><input type="radio" name="tipo" id="c-privado" value="Evento privado o corporativo"><label for="c-privado">Evento privado o corporativo<small>Empresa, boda, celebración</small></label></div>
           <div class="choice"><input type="radio" name="tipo" id="c-marca" value="Patrocinio de marca"><label for="c-marca">Patrocinio de marca<small>Por show o temporada</small></label></div>
-          <div class="choice"><input type="radio" name="tipo" id="c-talento" value="Soy artista y quiero presentarme"><label for="c-talento">Soy artista<small>Gira, Open Mic o THE JAM</small></label></div>
+          <div class="choice"><input type="radio" name="tipo" id="c-talento" value="Soy artista y quiero presentarme"><label for="c-talento">Soy artista<small>Músico, DJ, show o comediante</small></label></div>
         </div>
         <fieldset class="sub">
-          <legend style="font-size:16px;margin-bottom:12px">¿Qué tipo de show?</legend>
+          <legend style="font-size:16px;margin-bottom:12px">¿Qué tipo de evento?</legend>
           <div class="choices">
-            <div class="choice"><input type="radio" name="show" id="s-comedia" value="Stand-up"><label for="s-comedia">Stand-up</label></div>
-            <div class="choice"><input type="radio" name="show" id="s-dj" value="DJ / música electrónica"><label for="s-dj">DJ / electrónica</label></div>
-            <div class="choice"><input type="radio" name="show" id="s-vivo" value="Música en vivo"><label for="s-vivo">Música en vivo</label></div>
+            <div class="choice"><input type="radio" name="show" id="s-vivo" value="Concierto o música en vivo"><label for="s-vivo">Concierto / música en vivo</label></div>
+            <div class="choice"><input type="radio" name="show" id="s-dj" value="Fiesta con DJ"><label for="s-dj">Fiesta con DJ</label></div>
+            <div class="choice"><input type="radio" name="show" id="s-comedia" value="Show o stand-up"><label for="s-comedia">Show / stand-up</label></div>
+            <div class="choice"><input type="radio" name="show" id="s-corp" value="Evento corporativo"><label for="s-corp">Corporativo</label></div>
+            <div class="choice"><input type="radio" name="show" id="s-boda" value="Boda o celebración"><label for="s-boda">Boda / celebración</label></div>
+            <div class="choice"><input type="radio" name="show" id="s-fest" value="Festival o activación de marca"><label for="s-fest">Festival / marca</label></div>
             <div class="choice"><input type="radio" name="show" id="s-nose" value="Aún no sé, recomiéndenme"><label for="s-nose">Recomiéndenme</label></div>
           </div>
         </fieldset>
@@ -688,7 +763,7 @@ footer{padding-block:64px 40px}
         <a class="logo" href="#inicio"><img src="assets/brand/logo-demetrio-full.png" alt="Demetrio Entertainment, Los Cabos, B.C.S., México" width="260" height="73" loading="lazy"></a>
         <p>Productora, comercialización, operación y desarrollo de espectáculos. Los Cabos y La Paz, Baja California Sur.</p>
       </div>
-      <div><h3>Productora</h3><ul><li><a href="#servicios">Servicios</a></li><li><a href="#proceso">Cómo trabajamos</a></li><li><a href="#eventos">Eventos</a></li><li><a href="#formatos">Formatos propios</a></li></ul></div>
+      <div><h3>Productora</h3><ul><li><a href="#que-producimos">Qué producimos</a></li><li><a href="#servicios">Servicios</a></li><li><a href="#proceso">Cómo trabajamos</a></li><li><a href="#eventos">Eventos</a></li><li><a href="#formatos">Formatos propios</a></li></ul></div>
       <div><h3>Público</h3><ul><li><a href="https://linktr.ee/demetrio.mx">Boletos y próximos shows</a></li><li><a href="#formatos">Open Mic</a></li><li><a href="#formatos">THE JAM</a></li></ul></div>
       <div><h3>Síguenos</h3><ul><li><a href="https://www.instagram.com/demetrio_cabo">Instagram</a></li><li><a href="https://www.facebook.com/share/19ekVby3qt/">Facebook</a></li><li><a href="https://www.youtube.com/@demetriocabo8282">YouTube</a></li><li><a href="#cotiza">Contacto</a></li></ul></div>
     </div>
@@ -742,6 +817,10 @@ footer{padding-block:64px 40px}
     a.addEventListener('click', function(){ var el = document.getElementById(map[a.dataset.pick]); if(el) el.checked = true; });
   });
 
+  document.querySelectorAll('[data-ev]').forEach(function(a){
+    a.addEventListener('click', function(){ var el = document.getElementById(a.dataset.ev); if(el) el.checked = true; });
+  });
+
   // Cotizador
   var form = document.getElementById('wizard'), step = 1;
   var steps = form.querySelectorAll('[data-step]'), dots = form.querySelectorAll('.steps div');
@@ -752,7 +831,7 @@ footer{padding-block:64px 40px}
       'Hola Demetrio, quiero cotizar un evento.',
       '',
       'Necesito: ' + (val('tipo') || '—'),
-      'Show: ' + (val('show') || '—'),
+      'Tipo de evento: ' + (val('show') || '—'),
       'Ciudad: ' + val('ciudad'),
       'Fecha: ' + (val('fecha') || 'por definir'),
       'Asistentes: ' + val('personas'),
