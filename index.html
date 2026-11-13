@@ -16,7 +16,7 @@
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Demetrio Entertainment: Tú pones la fecha. Nosotros el show.">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#121019">
+<meta name="theme-color" content="#0E0D10">
 <link rel="canonical" href="https://demetrio.mx/">
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
@@ -26,14 +26,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Hanken+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  /* Mundo: backstage de noche en Baja. Un solo reflector ámbar sobre tinta violeta. */
-  --noche:#121019;      /* fondo */
-  --escenario:#1C1925;  /* superficies */
-  --linea:#332E3F;      /* bordes */
+  /* Mundo: backstage de noche. Negro, blanco y el magenta del micrófono del logo. */
+  --noche:#0E0D10;      /* fondo (negro del logo) */
+  --escenario:#18161B;  /* superficies */
+  --linea:#302C36;      /* bordes */
   --hueso:#F1EBDF;      /* texto */
   --polvo:#ABA3B6;      /* texto secundario */
-  --reflector:#FFB547;  /* acento único */
-  --marea:#7FD8CC;      /* secundario frío: ciudades y etiquetas */
+  --marca:#E60048;      /* magenta del logo: rellenos y botones (texto blanco encima) */
+  --reflector:#FF4D7E;  /* magenta claro: acento de texto sobre negro (contraste AA) */
+  --marea:#D9D2DE;      /* etiquetas y ciudades */
   --display:"Big Shoulders Display","Arial Narrow",Impact,sans-serif;
   --body:"Hanken Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;
   --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
@@ -47,7 +48,7 @@ html{scroll-behavior:smooth;scroll-padding-top:84px}
 body{margin:0;background:var(--noche);color:var(--hueso);font-family:var(--body);font-size:18px;line-height:1.6;-webkit-font-smoothing:antialiased}
 img{max-width:100%;display:block}
 a{color:var(--reflector)}
-a:hover{color:#FFD08A}
+a:hover{color:#FF7FA0}
 :focus-visible{outline:2px solid var(--reflector);outline-offset:3px;border-radius:4px}
 h1,h2,h3{text-wrap:balance;margin:0}
 p{margin:0}
@@ -59,8 +60,8 @@ p{margin:0}
 .lead{color:var(--polvo);font-size:clamp(18px,1.6vw,21px);max-width:62ch}
 section{padding-block:clamp(72px,10vw,128px)}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 28px;border-radius:999px;font:600 17px/1 var(--body);text-decoration:none;cursor:pointer;border:0;transition:transform .15s ease,background .15s ease,color .15s ease}
-.btn-primary{background:var(--reflector);color:#1A1205}
-.btn-primary:hover{background:#FFC46B;color:#1A1205;transform:translateY(-1px)}
+.btn-primary{background:var(--marca);color:#fff}
+.btn-primary:hover{background:#FF1A5E;color:#fff;transform:translateY(-1px)}
 .btn-ghost{background:transparent;color:var(--hueso);box-shadow:inset 0 0 0 1.5px var(--linea)}
 .btn-ghost:hover{color:var(--hueso);box-shadow:inset 0 0 0 1.5px var(--hueso)}
 .arrow{width:18px;height:18px;flex:none}
@@ -70,8 +71,8 @@ section{padding-block:clamp(72px,10vw,128px)}
 .nav-in{display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:72px}
 .logo{display:flex;flex-direction:column;text-decoration:none;color:var(--hueso);line-height:.9}
 .logo:hover{color:var(--hueso)}
-.logo b{font-family:var(--display);font-weight:900;font-size:30px;letter-spacing:.02em}
-.logo span{font-family:var(--mono);font-size:9.5px;letter-spacing:.42em;margin-top:4px;color:var(--polvo)}
+.logo img{height:38px;width:auto}
+.foot .logo img{height:auto;width:min(260px,100%)}
 .links{display:flex;align-items:center;gap:28px;font-size:16px;font-weight:500}
 .links a:not(.btn){color:var(--hueso);text-decoration:none}
 .links a:not(.btn):hover{color:var(--reflector)}
@@ -87,7 +88,7 @@ section{padding-block:clamp(72px,10vw,128px)}
 
 /* HERO */
 .hero{position:relative;overflow:hidden;padding-block:clamp(56px,8vw,104px) clamp(56px,7vw,88px);--mx:30%;--my:35%}
-.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(520px circle at var(--mx) var(--my),rgba(255,181,71,.16),transparent 62%);pointer-events:none;transition:background .08s linear}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(520px circle at var(--mx) var(--my),rgba(230,0,72,.20),transparent 62%);pointer-events:none;transition:background .08s linear}
 .hero-grid{position:relative;display:grid;grid-template-columns:minmax(0,1.5fr) minmax(300px,.9fr);gap:clamp(32px,5vw,72px);align-items:end}
 @media (max-width:960px){.hero-grid{grid-template-columns:1fr}}
 .hero h1{font-family:var(--display);font-weight:900;font-size:clamp(64px,11vw,168px);line-height:.84;text-transform:uppercase;letter-spacing:-.005em;margin-top:24px}
@@ -107,8 +108,8 @@ section{padding-block:clamp(72px,10vw,128px)}
 .t-rows dd{margin:2px 0 0;font-weight:600;color:#17131F}
 .t-cut{border-top:2px dashed #C9C0B1;margin:22px -26px 18px}
 .t-foot{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
-.t-foot a{background:#17131F;color:var(--hueso);text-decoration:none;font-weight:700;font-size:15px;padding:13px 20px;border-radius:999px;display:inline-flex;align-items:center;gap:8px;min-height:44px}
-.t-foot a:hover{background:#2A2436;color:var(--hueso)}
+.t-foot a{background:var(--marca);color:#fff;text-decoration:none;font-weight:700;font-size:15px;padding:13px 20px;border-radius:999px;display:inline-flex;align-items:center;gap:8px;min-height:44px}
+.t-foot a:hover{background:#FF1A5E;color:#fff}
 .barcode{height:34px;width:110px;background:repeating-linear-gradient(90deg,#17131F 0 2px,transparent 2px 4px,#17131F 4px 5px,transparent 5px 8px,#17131F 8px 11px,transparent 11px 12px)}
 
 /* MARQUEE */
@@ -237,16 +238,16 @@ section{padding-block:clamp(72px,10vw,128px)}
 .faq details p{color:var(--polvo);padding:0 0 24px;max-width:66ch}
 
 /* COTIZADOR */
-.quote{background:var(--reflector);color:#1A1205}
-.quote .cue{color:#3A2A0C}.quote .cue b{color:#1A1205}.quote .cue::after{background:rgba(26,18,5,.25)}
+.quote{background:var(--marca);color:#fff}
+.quote .cue{color:#FFE1EA}.quote .cue b{color:#fff}.quote .cue::after{background:rgba(255,255,255,.35)}
 .quote-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(32px,6vw,80px);align-items:start}
 @media (max-width:900px){.quote-grid{grid-template-columns:1fr}}
-.quote .h2{color:#1A1205}
-.quote .lead{color:#3A2A0C}
+.quote .h2{color:#fff}
+.quote .lead{color:#FFE9EF}
 .direct{margin-top:32px;display:flex;flex-direction:column;gap:10px;font-weight:600}
-.direct span{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:500;color:#3A2A0C}
-.direct a{color:#1A1205}
-.wizard{background:var(--noche);color:var(--hueso);border-radius:28px;padding:clamp(24px,3.5vw,40px);box-shadow:0 30px 60px -24px rgba(26,18,5,.55)}
+.direct span{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:500;color:#FFE1EA}
+.direct a{color:#fff}
+.wizard{background:var(--noche);color:var(--hueso);border-radius:28px;padding:clamp(24px,3.5vw,40px);box-shadow:0 30px 60px -24px rgba(60,0,20,.55)}
 .steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:28px}
 .steps div{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--polvo);padding-top:10px;border-top:3px solid var(--linea)}
 .steps div.on{color:var(--hueso);border-color:var(--reflector)}
@@ -259,7 +260,7 @@ fieldset{border:0;margin:0;padding:0;min-width:0}
 .choice input{position:absolute;opacity:0;inset:0;cursor:pointer}
 .choice label{display:flex;flex-direction:column;gap:2px;min-height:64px;padding:14px 16px;border:1.5px solid var(--linea);border-radius:14px;cursor:pointer;transition:all .15s}
 .choice label small{color:var(--polvo);font-size:14px}
-.choice input:checked + label{border-color:var(--reflector);background:rgba(255,181,71,.08)}
+.choice input:checked + label{border-color:var(--reflector);background:rgba(230,0,72,.12)}
 .choice input:focus-visible + label{outline:2px solid var(--reflector);outline-offset:2px}
 .fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
 @media (max-width:480px){.fields{grid-template-columns:1fr}}
@@ -301,7 +302,7 @@ footer{padding-block:64px 40px}
 
 <header class="nav">
   <div class="wrap nav-in">
-    <a class="logo" href="#inicio" aria-label="Demetrio Entertainment, inicio"><b>DEMETRIO</b><span>ENTERTAINMENT</span></a>
+    <a class="logo" href="#inicio"><img src="assets/brand/logo-demetrio.png" alt="Demetrio Entertainment" width="184" height="38"></a>
     <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navLinks">Menú</button>
     <nav class="links" id="navLinks" aria-label="Principal">
       <a href="#para-quien">Para quién</a>
@@ -684,7 +685,7 @@ footer{padding-block:64px 40px}
   <div class="wrap">
     <div class="foot">
       <div>
-        <a class="logo" href="#inicio"><b>DEMETRIO</b><span>ENTERTAINMENT</span></a>
+        <a class="logo" href="#inicio"><img src="assets/brand/logo-demetrio-full.png" alt="Demetrio Entertainment, Los Cabos, B.C.S., México" width="260" height="73" loading="lazy"></a>
         <p>Productora, comercialización, operación y desarrollo de espectáculos. Los Cabos y La Paz, Baja California Sur.</p>
       </div>
       <div><h3>Productora</h3><ul><li><a href="#servicios">Servicios</a></li><li><a href="#proceso">Cómo trabajamos</a></li><li><a href="#eventos">Eventos</a></li><li><a href="#formatos">Formatos propios</a></li></ul></div>
