@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Demetrio Entertainment</title>
+<meta name="description" content="Demetrio Entertainment produce, comercializa y opera espectáculos en Los Cabos y La Paz: stand-up, música electrónica, shows y eventos privados y corporativos.">
+<meta property="og:title" content="Demetrio Entertainment · Productora de espectáculos en Los Cabos y La Paz">
+<meta property="og:description" content="Producción, comercialización y operación de eventos en vivo en Baja California Sur.">
+<meta property="og:url" content="https://demetrio.mx">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Hanken+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Mundo: backstage de noche en Baja. Un solo reflector ámbar sobre tinta violeta. */
+  --noche:#121019;      /* fondo */
+  --escenario:#1C1925;  /* superficies */
+  --linea:#332E3F;      /* bordes */
+  --hueso:#F1EBDF;      /* texto */
+  --polvo:#ABA3B6;      /* texto secundario */
+  --reflector:#FFB547;  /* acento único */
+  --marea:#7FD8CC;      /* secundario frío: ciudades y etiquetas */
+  --display:"Big Shoulders Display","Arial Narrow",Impact,sans-serif;
+  --body:"Hanken Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --max:1200px;
+  --gutter:clamp(16px,4vw,40px);
+  /* Layout: una “corrida de show”. Cada sección es un cue de producción, de la apertura al cierre. */
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{margin:0;background:var(--noche);color:var(--hueso);font-family:var(--body);font-size:18px;line-height:1.6;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:var(--reflector)}
+a:hover{color:#FFD08A}
+:focus-visible{outline:2px solid var(--reflector);outline-offset:3px;border-radius:4px}
+h1,h2,h3{text-wrap:balance;margin:0}
+p{margin:0}
+.wrap{max-width:var(--max);margin:0 auto;padding-inline:var(--gutter)}
+.cue{font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--marea);display:flex;gap:12px;align-items:center}
+.cue b{color:var(--reflector);font-weight:600}
+.cue::after{content:"";height:1px;flex:0 0 48px;background:var(--linea)}
+.h2{font-family:var(--display);font-weight:800;font-size:clamp(44px,6.4vw,84px);line-height:.92;text-transform:uppercase;letter-spacing:.005em}
+.lead{color:var(--polvo);font-size:clamp(18px,1.6vw,21px);max-width:62ch}
+section{padding-block:clamp(72px,10vw,128px)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 28px;border-radius:999px;font:600 17px/1 var(--body);text-decoration:none;cursor:pointer;border:0;transition:transform .15s ease,background .15s ease,color .15s ease}
+.btn-primary{background:var(--reflector);color:#1A1205}
+.btn-primary:hover{background:#FFC46B;color:#1A1205;transform:translateY(-1px)}
+.btn-ghost{background:transparent;color:var(--hueso);box-shadow:inset 0 0 0 1.5px var(--linea)}
+.btn-ghost:hover{color:var(--hueso);box-shadow:inset 0 0 0 1.5px var(--hueso)}
+.arrow{width:18px;height:18px;flex:none}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:20;background:rgba(18,16,25,.86);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--linea)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:72px}
+.logo{display:flex;flex-direction:column;text-decoration:none;color:var(--hueso);line-height:.9}
+.logo:hover{color:var(--hueso)}
+.logo b{font-family:var(--display);font-weight:900;font-size:30px;letter-spacing:.02em}
+.logo span{font-family:var(--mono);font-size:9.5px;letter-spacing:.42em;margin-top:4px;color:var(--polvo)}
+.links{display:flex;align-items:center;gap:28px;font-size:16px;font-weight:500}
+.links a:not(.btn){color:var(--hueso);text-decoration:none}
+.links a:not(.btn):hover{color:var(--reflector)}
+.links .btn{min-height:44px;padding:0 20px;font-size:15px}
+.menu-btn{display:none;background:none;border:1.5px solid var(--linea);color:var(--hueso);border-radius:12px;min-height:44px;padding:0 14px;font:600 15px var(--body);cursor:pointer}
+@media (max-width:900px){
+  .menu-btn{display:inline-flex;align-items:center}
+  .links{display:none;position:absolute;left:0;right:0;top:72px;flex-direction:column;align-items:stretch;gap:0;background:var(--noche);border-bottom:1px solid var(--linea);padding:8px var(--gutter) 20px}
+  .links.open{display:flex}
+  .links a:not(.btn){padding:14px 0;border-bottom:1px solid var(--linea)}
+  .links .btn{margin-top:16px}
+}
+
+/* HERO */
+.hero{position:relative;overflow:hidden;padding-block:clamp(56px,8vw,104px) clamp(56px,7vw,88px);--mx:30%;--my:35%}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(520px circle at var(--mx) var(--my),rgba(255,181,71,.16),transparent 62%);pointer-events:none;transition:background .08s linear}
+.hero-grid{position:relative;display:grid;grid-template-columns:minmax(0,1.5fr) minmax(300px,.9fr);gap:clamp(32px,5vw,72px);align-items:end}
+@media (max-width:960px){.hero-grid{grid-template-columns:1fr}}
+.hero h1{font-family:var(--display);font-weight:900;font-size:clamp(64px,11vw,168px);line-height:.84;text-transform:uppercase;letter-spacing:-.005em;margin-top:24px}
+.hero h1 .lit{color:var(--reflector);display:block}
+.hero .lead{margin-top:28px}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:14px;margin-top:36px}
+
+/* TICKET */
+.ticket{position:relative;background:var(--hueso);color:#17131F;border-radius:18px;padding:26px 26px 22px;transform:rotate(1.6deg);box-shadow:0 30px 60px -20px rgba(0,0,0,.6);max-width:420px;justify-self:end;width:100%}
+@media (max-width:960px){.ticket{justify-self:start;transform:rotate(0)}}
+.ticket::before,.ticket::after{content:"";position:absolute;width:30px;height:30px;border-radius:50%;background:var(--noche);top:calc(62% - 15px)}
+.ticket::before{left:-15px}.ticket::after{right:-15px}
+.t-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:#5A5266}
+.t-title{font-family:var(--display);font-weight:900;font-size:44px;line-height:.9;text-transform:uppercase;margin:16px 0 18px;color:#17131F}
+.t-rows{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 18px;font-family:var(--mono);font-size:13px}
+.t-rows dt{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#6A6276}
+.t-rows dd{margin:2px 0 0;font-weight:600;color:#17131F}
+.t-cut{border-top:2px dashed #C9C0B1;margin:22px -26px 18px}
+.t-foot{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.t-foot a{background:#17131F;color:var(--hueso);text-decoration:none;font-weight:700;font-size:15px;padding:13px 20px;border-radius:999px;display:inline-flex;align-items:center;gap:8px;min-height:44px}
+.t-foot a:hover{background:#2A2436;color:var(--hueso)}
+.barcode{height:34px;width:110px;background:repeating-linear-gradient(90deg,#17131F 0 2px,transparent 2px 4px,#17131F 4px 5px,transparent 5px 8px,#17131F 8px 11px,transparent 11px 12px)}
+
+/* MARQUEE */
+.marquee{border-block:1px solid var(--linea);overflow:hidden;background:var(--escenario)}
+.marquee-track{display:flex;gap:48px;width:max-content;padding-block:18px;animation:roll 38s linear infinite;font-family:var(--display);font-weight:800;font-size:28px;text-transform:uppercase;letter-spacing:.02em;color:var(--polvo)}
+.marquee-track span{display:flex;align-items:center;gap:48px;white-space:nowrap}
+.marquee-track span::after{content:"";width:8px;height:8px;border-radius:50%;background:var(--reflector)}
+@keyframes roll{to{transform:translateX(-50%)}}
+
+/* AUDIENCIAS */
+.aud-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px;align-items:end;margin-bottom:48px}
+@media (max-width:860px){.aud-head{grid-template-columns:1fr}}
+.tabs{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px}
+.tab{background:transparent;color:var(--hueso);border:1.5px solid var(--linea);border-radius:999px;min-height:48px;padding:0 22px;font:600 16px var(--body);cursor:pointer;transition:all .15s}
+.tab:hover{border-color:var(--hueso)}
+.tab[aria-selected="true"]{background:var(--hueso);color:var(--noche);border-color:var(--hueso)}
+.panel{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);background:var(--escenario);border:1px solid var(--linea);border-radius:28px;padding:clamp(28px,4vw,52px)}
+.panel[hidden]{display:none}
+@media (max-width:860px){.panel{grid-template-columns:1fr}}
+.panel h3{font-family:var(--display);font-weight:800;font-size:clamp(36px,4.4vw,56px);line-height:.95;text-transform:uppercase}
+.panel .pain{color:var(--polvo);margin-top:18px;max-width:52ch}
+.panel .btn{margin-top:28px}
+.checks{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;border-top:1px solid var(--linea)}
+.checks li{display:grid;grid-template-columns:28px 1fr;gap:12px;padding:16px 0;border-bottom:1px solid var(--linea)}
+.checks svg{width:22px;height:22px;color:var(--reflector);margin-top:3px}
+.checks strong{display:block;font-weight:600}
+.checks span{color:var(--polvo);font-size:16px}
+
+/* SERVICIOS */
+.svc{background:var(--escenario);border-block:1px solid var(--linea)}
+.svc-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin-top:56px;border-top:1px solid var(--linea)}
+@media (max-width:1000px){.svc-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.svc-grid{grid-template-columns:1fr}}
+.svc-item{padding:28px 24px 32px 0;border-bottom:1px solid var(--linea)}
+.svc-item + .svc-item{padding-left:24px;border-left:1px solid var(--linea)}
+@media (max-width:1000px){.svc-item:nth-child(3){padding-left:0;border-left:0}}
+@media (max-width:560px){.svc-item + .svc-item{padding-left:0;border-left:0}}
+.svc-item .num{font-family:var(--mono);font-size:13px;color:var(--reflector);letter-spacing:.1em}
+.svc-item h3{font-family:var(--display);font-weight:800;font-size:34px;text-transform:uppercase;line-height:1;margin:14px 0 12px}
+.svc-item p{color:var(--polvo);font-size:16px}
+.svc-item ul{margin:16px 0 0;padding:0;list-style:none;font-size:15px;display:flex;flex-direction:column;gap:6px}
+.svc-item li::before{content:"— ";color:var(--marea)}
+
+/* ESCALA */
+.scale{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:48px}
+@media (max-width:860px){.scale{grid-template-columns:1fr}}
+.scale-card{border:1px solid var(--linea);border-radius:24px;padding:30px;display:flex;flex-direction:column;gap:14px;position:relative;overflow:hidden}
+.scale-card .bars{display:flex;gap:5px;align-items:flex-end;height:40px}
+.scale-card .bars i{width:10px;background:var(--linea);border-radius:2px}
+.scale-card .bars i.on{background:var(--reflector)}
+.scale-card h3{font-family:var(--display);font-weight:800;font-size:40px;text-transform:uppercase;line-height:1}
+.scale-card p{color:var(--polvo);font-size:16px}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:8px}
+.tags span{font-family:var(--mono);font-size:12px;letter-spacing:.06em;padding:6px 10px;border-radius:999px;background:var(--escenario);border:1px solid var(--linea);color:var(--hueso)}
+
+/* RUN OF SHOW */
+.ros{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(32px,6vw,96px)}
+@media (max-width:900px){.ros{grid-template-columns:1fr}}
+.ros-sticky{position:sticky;top:120px;align-self:start}
+@media (max-width:900px){.ros-sticky{position:static}}
+.ros ol{list-style:none;margin:0;padding:0;position:relative}
+.ros ol::before{content:"";position:absolute;left:96px;top:8px;bottom:8px;width:1px;background:var(--linea)}
+@media (max-width:560px){.ros ol::before{left:0}}
+.ros li{display:grid;grid-template-columns:96px 1fr;gap:28px;padding:22px 0}
+@media (max-width:560px){.ros li{grid-template-columns:1fr;gap:6px;padding-left:22px}}
+.ros time{font-family:var(--mono);font-size:14px;font-weight:600;color:var(--reflector);padding-top:4px;font-variant-numeric:tabular-nums}
+.ros h3{font-size:22px;font-weight:700;position:relative}
+.ros h3::before{content:"";position:absolute;left:-34px;top:9px;width:11px;height:11px;border-radius:50%;background:var(--noche);border:2px solid var(--reflector)}
+@media (max-width:560px){.ros h3::before{left:-27px}}
+.ros p{color:var(--polvo);font-size:16px;margin-top:6px;max-width:56ch}
+
+/* CASOS */
+.cases{display:flex;flex-direction:column;gap:clamp(56px,8vw,96px);margin-top:56px}
+.case{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(28px,5vw,72px);align-items:center}
+.case:nth-child(even){grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr)}
+.case:nth-child(even) .case-img{order:2}
+@media (max-width:860px){.case,.case:nth-child(even){grid-template-columns:1fr}.case:nth-child(even) .case-img{order:0}}
+.case-img{background:var(--escenario);border:1px solid var(--linea);border-radius:24px;padding:18px;aspect-ratio:4/5;display:flex;align-items:center;justify-content:center}
+.case-img img{max-height:100%;width:auto;border-radius:10px;box-shadow:0 20px 40px -18px rgba(0,0,0,.7)}
+.case .meta{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.case .meta span{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:6px 11px;border-radius:999px;border:1px solid var(--linea);color:var(--marea)}
+.case h3{font-family:var(--display);font-weight:800;font-size:clamp(38px,4.6vw,60px);line-height:.95;text-transform:uppercase}
+.case p{color:var(--polvo);margin-top:18px;max-width:54ch}
+.case dl{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:28px 0 0;padding-top:20px;border-top:1px solid var(--linea)}
+@media (max-width:520px){.case dl{grid-template-columns:1fr 1fr}}
+.case dt{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--polvo)}
+.case dd{margin:4px 0 0;font-weight:600;font-size:16px}
+.archive{margin-top:clamp(56px,8vw,96px);border-top:1px solid var(--linea)}
+.archive h3{font-family:var(--mono);font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--polvo);font-weight:500;padding:22px 0 6px}
+.arow{display:grid;grid-template-columns:56px minmax(0,1fr) auto;gap:20px;align-items:center;padding:14px 0;border-bottom:1px solid var(--linea)}
+.arow img{width:56px;height:56px;object-fit:cover;border-radius:10px}
+.arow strong{display:block;font-size:18px}
+.arow span{color:var(--polvo);font-size:15px}
+.arow em{font-style:normal;font-family:var(--mono);font-size:13px;color:var(--marea);white-space:nowrap}
+@media (max-width:560px){.arow{grid-template-columns:56px 1fr}.arow em{grid-column:2}}
+
+/* PROPIEDADES */
+.props{background:var(--escenario);border-block:1px solid var(--linea)}
+.props-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:48px}
+@media (max-width:760px){.props-grid{grid-template-columns:1fr}}
+.prop{background:var(--noche);border:1px solid var(--linea);border-radius:24px;padding:32px;display:flex;flex-direction:column;gap:12px}
+.prop .kind{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--reflector)}
+.prop h3{font-family:var(--display);font-weight:800;font-size:44px;line-height:.95;text-transform:uppercase}
+.prop p{color:var(--polvo);font-size:16px}
+.cycle{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin-top:8px}
+.cycle div{background:var(--escenario);border:1px solid var(--linea);border-radius:12px;padding:10px;font-size:13px;line-height:1.3}
+.cycle b{display:block;font-family:var(--mono);font-size:11px;color:var(--marea);font-weight:500;margin-bottom:4px}
+@media (max-width:460px){.cycle{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* POR QUÉ */
+.why{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;margin-top:48px;border-top:1px solid var(--linea)}
+@media (max-width:760px){.why{grid-template-columns:1fr}}
+.why div{padding:28px 32px 28px 0;border-bottom:1px solid var(--linea)}
+.why div:nth-child(even){padding-left:32px;border-left:1px solid var(--linea)}
+@media (max-width:760px){.why div:nth-child(even){padding-left:0;border-left:0}}
+.why h3{font-size:22px;font-weight:700}
+.why p{color:var(--polvo);margin-top:8px;font-size:16px;max-width:52ch}
+
+/* FAQ */
+.faq{max-width:860px}
+.faq details{border-bottom:1px solid var(--linea)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:24px;align-items:center;padding:22px 0;font-size:20px;font-weight:600}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-family:var(--mono);font-size:24px;color:var(--reflector);transition:transform .2s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{color:var(--polvo);padding:0 0 24px;max-width:66ch}
+
+/* COTIZADOR */
+.quote{background:var(--reflector);color:#1A1205}
+.quote .cue{color:#3A2A0C}.quote .cue b{color:#1A1205}.quote .cue::after{background:rgba(26,18,5,.25)}
+.quote-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(32px,6vw,80px);align-items:start}
+@media (max-width:900px){.quote-grid{grid-template-columns:1fr}}
+.quote .h2{color:#1A1205}
+.quote .lead{color:#3A2A0C}
+.direct{margin-top:32px;display:flex;flex-direction:column;gap:10px;font-weight:600}
+.direct span{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:500;color:#3A2A0C}
+.direct a{color:#1A1205}
+.wizard{background:var(--noche);color:var(--hueso);border-radius:28px;padding:clamp(24px,3.5vw,40px);box-shadow:0 30px 60px -24px rgba(26,18,5,.55)}
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:28px}
+.steps div{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--polvo);padding-top:10px;border-top:3px solid var(--linea)}
+.steps div.on{color:var(--hueso);border-color:var(--reflector)}
+.step[hidden]{display:none}
+.step legend,.step h3{font-size:22px;font-weight:700;margin-bottom:16px;padding:0}
+fieldset{border:0;margin:0;padding:0;min-width:0}
+.choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+@media (max-width:480px){.choices{grid-template-columns:1fr}}
+.choice{position:relative}
+.choice input{position:absolute;opacity:0;inset:0;cursor:pointer}
+.choice label{display:flex;flex-direction:column;gap:2px;min-height:64px;padding:14px 16px;border:1.5px solid var(--linea);border-radius:14px;cursor:pointer;transition:all .15s}
+.choice label small{color:var(--polvo);font-size:14px}
+.choice input:checked + label{border-color:var(--reflector);background:rgba(255,181,71,.08)}
+.choice input:focus-visible + label{outline:2px solid var(--reflector);outline-offset:2px}
+.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+@media (max-width:480px){.fields{grid-template-columns:1fr}}
+.field{display:flex;flex-direction:column;gap:8px}
+.field.full{grid-column:1/-1}
+.field label{font-size:14px;font-weight:600}
+.field input,.field select,.field textarea{background:var(--escenario);color:var(--hueso);border:1.5px solid var(--linea);border-radius:12px;padding:14px 16px;font:400 16px var(--body);min-height:52px;width:100%}
+.field textarea{resize:vertical;min-height:96px}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--reflector);outline:none}
+.sub{margin-top:22px}
+.nav-steps{display:flex;justify-content:space-between;gap:12px;margin-top:28px;flex-wrap:wrap}
+.err{color:#FF9C8A;font-size:15px;margin-top:14px;min-height:1px}
+.summary{background:var(--escenario);border:1px solid var(--linea);border-radius:16px;padding:20px;font-family:var(--mono);font-size:14px;white-space:pre-wrap;line-height:1.7}
+.done-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}
+.note{color:var(--polvo);font-size:14px;margin-top:14px}
+
+/* FOOTER */
+footer{padding-block:64px 40px}
+.foot{display:grid;grid-template-columns:minmax(0,1.4fr) repeat(3,minmax(0,1fr));gap:32px;padding-bottom:40px;border-bottom:1px solid var(--linea)}
+@media (max-width:860px){.foot{grid-template-columns:1fr 1fr}}
+@media (max-width:480px){.foot{grid-template-columns:1fr}}
+.foot h3{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--marea);font-weight:500;margin-bottom:14px}
+.foot ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;font-size:16px}
+.foot ul a{color:var(--hueso);text-decoration:none}
+.foot ul a:hover{color:var(--reflector)}
+.foot p{color:var(--polvo);font-size:16px;margin-top:16px;max-width:36ch}
+.legal{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;padding-top:24px;color:var(--polvo);font-size:14px}
+.legal a{color:var(--polvo)}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .marquee-track{animation:none}
+  .hero::before{transition:none}
+  *{transition:none!important}
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="logo" href="#inicio" aria-label="Demetrio Entertainment, inicio"><b>DEMETRIO</b><span>ENTERTAINMENT</span></a>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navLinks">Menú</button>
+    <nav class="links" id="navLinks" aria-label="Principal">
+      <a href="#para-quien">Para quién</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#proceso">Cómo trabajamos</a>
+      <a href="#eventos">Eventos</a>
+      <a href="#formatos">Formatos</a>
+      <a href="https://linktr.ee/demetrio.mx">Boletos</a>
+      <a class="btn btn-primary" href="#cotiza">Cotiza tu evento</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<!-- CUE 01 · APERTURA -->
+<section class="hero" id="inicio">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="cue"><b>Productora de espectáculos</b> Los Cabos · La Paz</p>
+      <h1>Tú pones la fecha.<span class="lit">Nosotros el show.</span></h1>
+      <p class="lead">Demetrio Entertainment produce, vende y opera eventos en vivo en Baja California Sur: giras de stand-up, fiestas con DJs internacionales, shows, eventos de marca y celebraciones privadas. Una sola contraparte, desde que nace la idea hasta que se apagan las luces.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="#cotiza">Cotiza tu evento
+          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn-ghost" href="#para-quien">¿Qué podemos hacer por ti?</a>
+      </div>
+    </div>
+    <aside class="ticket" aria-label="Pase de producción">
+      <div class="t-top"><span>Pase de producción</span><span>Nº 0001</span></div>
+      <p class="t-title">Tu próximo evento</p>
+      <dl class="t-rows">
+        <div><dt>Puertas</dt><dd>20:00</dd></div>
+        <div><dt>Show</dt><dd>21:00</dd></div>
+        <div><dt>Plaza</dt><dd>Los Cabos · La Paz</dd></div>
+        <div><dt>Formato</dt><dd>El que imagines</dd></div>
+      </dl>
+      <div class="t-cut" aria-hidden="true"></div>
+      <div class="t-foot">
+        <div class="barcode" aria-hidden="true"></div>
+        <a href="#cotiza">Separar fecha
+          <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Stand-up en español</span><span>English comedy night</span><span>Música electrónica</span><span>Shows y giras</span><span>Eventos corporativos</span><span>Fiestas privadas</span><span>Activaciones de marca</span><span>Open Mic</span>
+    <span>Stand-up en español</span><span>English comedy night</span><span>Música electrónica</span><span>Shows y giras</span><span>Eventos corporativos</span><span>Fiestas privadas</span><span>Activaciones de marca</span><span>Open Mic</span>
+  </div>
+</div>
+
+<!-- CUE 02 · PARA QUIÉN -->
+<section id="para-quien">
+  <div class="wrap">
+    <div class="aud-head">
+      <div>
+        <p class="cue"><b>Cue 02</b> Para quién trabajamos</p>
+        <h2 class="h2" style="margin-top:20px">Cada evento empieza con alguien que necesita algo</h2>
+      </div>
+      <p class="lead">Elige tu caso y te decimos cómo te ayudamos.</p>
+    </div>
+    <div class="tabs" role="tablist" aria-label="Tipo de cliente">
+      <button class="tab" role="tab" id="t-venue" aria-controls="p-venue" aria-selected="true">Tengo un venue</button>
+      <button class="tab" role="tab" id="t-marca" aria-controls="p-marca" aria-selected="false" tabindex="-1">Represento una marca</button>
+      <button class="tab" role="tab" id="t-privado" aria-controls="p-privado" aria-selected="false" tabindex="-1">Organizo un evento privado</button>
+      <button class="tab" role="tab" id="t-talento" aria-controls="p-talento" aria-selected="false" tabindex="-1">Soy artista</button>
+    </div>
+
+    <div class="panel" role="tabpanel" id="p-venue" aria-labelledby="t-venue">
+      <div>
+        <h3>Llena tus noches flojas</h3>
+        <p class="pain">Restaurantes, bares, beach clubs y teatros. Tú pones el espacio. Nosotros traemos el show, la gente y la promoción para que una noche tranquila se convierta en una noche con boletos vendidos y más consumo.</p>
+        <a class="btn btn-primary" href="#cotiza" data-pick="venue">Quiero programación para mi venue</a>
+      </div>
+      <ul class="checks">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><strong>Calendario trimestral</strong><span>Fechas fijas con anticipación, no shows sueltos.</span></div></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><strong>Artistas probados</strong><span>Comediantes y DJs que ya mueven público.</span></div></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><strong>Promoción y boletaje</strong><span>Carteles, redes, pauta y venta en línea a cargo nuestro.</span></div></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><strong>Reporte después de cada fecha</strong><span>Asistencia, ventas y propuesta para la siguiente.</span></div></li>
+      </ul>
+    </div>
+
+    <div class="panel" role="tabpanel" id="p-marca" aria-labelledby="t-marca" hidden>
+      <div>
+        <h3>Pon tu marca donde está la gente</h3>
+        <p class="pain">Bebidas, hoteles, inmobiliarias, marcas de moda. Ponemos tu marca en noches que la gente ya quiere vivir, en lugar de un anuncio que se ignora.</p>
+        <a class="btn btn-primary" href="#cotiza" data-pick="marca">Quiero patrocinar</a>
+      </div>
+      <ul class="checks">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><strong>Patrocinio por show o por temporada</strong><span>Tú eliges cuánta presencia quieres.</span></div></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><strong>Activaciones en sitio</strong><span>Barra, degustación, foto, experiencia VIP.</span></div></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><strong>Logo en carteles y campañas</strong><span>Antes, durante y después del evento.</span></div></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><strong>Dos mercados</strong><span>Público local, residentes extranjeros y visitantes.</span></div></li>
+      </ul>
+    </div>
+
+    <div class="panel" role="tabpanel" id="p-privado" aria-labelledby="t-privado" hidden>
+      <div>
+        <h3>Tu evento, con el show resuelto</h3>
+        <p class="pain">Convenciones, grupos de incentivo, fiestas de empresa, aniversarios y celebraciones. Te armamos el entretenimiento completo y lo coordinamos con tu venue o tu wedding planner.</p>
+        <a class="btn btn-primary" href="#cotiza" data-pick="privado">Cotizar mi evento</a>
+      </div>
+      <ul class="checks">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><strong>Comediantes en español o inglés</strong><span>Rutinas a la medida del público.</span></div></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><strong>DJs y música en vivo</strong><span>De la cena a la pista.</span></div></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><strong>Producción técnica</strong><span>Audio, iluminación, escenario y staff.</span></div></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><strong>Una sola persona a cargo</strong><span>Tú hablas con uno; nosotros coordinamos a todos.</span></div></li>
+      </ul>
+    </div>
+
+    <div class="panel" role="tabpanel" id="p-talento" aria-labelledby="t-talento" hidden>
+      <div>
+        <h3>Súbete a nuestro escenario</h3>
+        <p class="pain">Si eres comediante o músico y quieres hacer fechas en Los Cabos y La Paz, o eres de aquí y quieres empezar, tenemos lugar para ti.</p>
+        <a class="btn btn-primary" href="#cotiza" data-pick="talento">Mandar mi material</a>
+      </div>
+      <ul class="checks">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><strong>Giras por el circuito</strong><span>Dos plazas en una misma gira.</span></div></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><strong>Open Mic cada 15 días</strong><span>Con presentador, tiempos y reglas claras.</span></div></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><strong>Concurso de nuevos talentos</strong><span>$1,000 MXN y abrir el siguiente show.</span></div></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><strong>THE JAM</strong><span>Sesiones para músicos locales.</span></div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CUE 03 · SERVICIOS -->
+<section class="svc" id="servicios">
+  <div class="wrap">
+    <p class="cue"><b>Cue 03</b> Servicios</p>
+    <h2 class="h2" style="margin-top:20px;max-width:16ch">Todo lo que pasa antes, durante y después</h2>
+    <div class="svc-grid">
+      <div class="svc-item"><span class="num">01</span><h3>Producción</h3><p>Diseñamos el evento y lo armamos.</p><ul><li>Booking de artistas</li><li>Concepto y formato</li><li>Audio, luz y escenario</li></ul></div>
+      <div class="svc-item"><span class="num">02</span><h3>Comercialización</h3><p>Hacemos que la gente llegue.</p><ul><li>Diseño de carteles</li><li>Redes y pauta</li><li>Venta de boletos</li><li>Patrocinios</li></ul></div>
+      <div class="svc-item"><span class="num">03</span><h3>Operación</h3><p>Resolvemos todo el día del evento.</p><ul><li>Coordinación con el venue</li><li>Logística del artista</li><li>Staff y accesos</li></ul></div>
+      <div class="svc-item"><span class="num">04</span><h3>Desarrollo</h3><p>Creamos formatos que se repiten.</p><ul><li>Formatos propios</li><li>Talento local</li><li>Temporadas</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- CUE 04 · ESCALA -->
+<section id="escala">
+  <div class="wrap">
+    <p class="cue"><b>Cue 04</b> Del tamaño que necesites</p>
+    <h2 class="h2" style="margin-top:20px">Pequeño, mediano o grande. De todo a todo.</h2>
+    <div class="scale">
+      <article class="scale-card">
+        <div class="bars" aria-hidden="true"><i class="on" style="height:30%"></i><i style="height:55%"></i><i style="height:80%"></i><i style="height:100%"></i></div>
+        <h3>Íntimo</h3>
+        <p>Noches de comedia, cenas show y sesiones acústicas. Ideal para probar un formato o fidelizar a tus clientes.</p>
+        <div class="tags"><span>Restobar</span><span>Open Mic</span><span>Cena show</span></div>
+      </article>
+      <article class="scale-card">
+        <div class="bars" aria-hidden="true"><i class="on" style="height:30%"></i><i class="on" style="height:55%"></i><i style="height:80%"></i><i style="height:100%"></i></div>
+        <h3>Mediano</h3>
+        <p>Shows con artista invitado, fiestas en beach club y eventos de empresa con producción completa.</p>
+        <div class="tags"><span>Beach club</span><span>Corporativo</span><span>Gira 2 plazas</span></div>
+      </article>
+      <article class="scale-card">
+        <div class="bars" aria-hidden="true"><i class="on" style="height:30%"></i><i class="on" style="height:55%"></i><i class="on" style="height:80%"></i><i class="on" style="height:100%"></i></div>
+        <h3>Grande</h3>
+        <p>Teatros, festivales y artistas de primer nivel, con boletaje, patrocinadores y operación a gran escala.</p>
+        <div class="tags"><span>Teatro</span><span>Festival</span><span>Boletaje</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- CUE 05 · PROCESO -->
+<section id="proceso" style="padding-top:0">
+  <div class="wrap ros">
+    <div class="ros-sticky">
+      <p class="cue"><b>Cue 05</b> Cómo trabajamos</p>
+      <h2 class="h2" style="margin-top:20px">La corrida del show</h2>
+      <p class="lead" style="margin-top:20px">Así se ve un evento con nosotros, de la primera llamada al reporte final. Los tiempos son de referencia y se ajustan al tamaño del evento.</p>
+      <a class="btn btn-primary" href="#cotiza" style="margin-top:28px">Empezar con el brief</a>
+    </div>
+    <ol>
+      <li><time>T – 8 sem</time><div><h3>Brief</h3><p>Nos cuentas qué quieres lograr, para quién, dónde y con qué presupuesto.</p></div></li>
+      <li><time>T – 7 sem</time><div><h3>Propuesta y presupuesto</h3><p>Te mandamos formato, artistas posibles, costos y modelo de ingresos: taquilla, venue o patrocinio.</p></div></li>
+      <li><time>T – 6 sem</time><div><h3>Booking y producción</h3><p>Cerramos artistas, venue, contratos, técnica y logística.</p></div></li>
+      <li><time>T – 4 sem</time><div><h3>Promoción y venta</h3><p>Lanzamos el cartel y abrimos la venta de boletos y la campaña en redes.</p></div></li>
+      <li><time>Día D</time><div><h3>Puertas y show</h3><p>Montaje, prueba de sonido, acceso, show y cierre. Tú lo disfrutas.</p></div></li>
+      <li><time>D + 3</time><div><h3>Reporte</h3><p>Te entregamos asistencia, ventas, lo que funcionó y una propuesta para la siguiente fecha.</p></div></li>
+    </ol>
+  </div>
+</section>
+
+<!-- CUE 06 · EVENTOS -->
+<section id="eventos" style="border-top:1px solid var(--linea)">
+  <div class="wrap">
+    <p class="cue"><b>Cue 06</b> Eventos</p>
+    <h2 class="h2" style="margin-top:20px">Noches que ya pasaron</h2>
+    <div class="cases">
+      <article class="case">
+        <div class="case-img"><img src="assets/fandango-deanda-escobedo.jpg" alt="Cartel del show de Alexis de Anda y Mónica Escobedo en Casa Fandango, La Paz" loading="lazy"></div>
+        <div>
+          <div class="meta"><span>Stand-up comedy</span><span>La Paz</span></div>
+          <h3>Alexis de Anda + Mónica Escobedo</h3>
+          <p>Dos comediantes reconocidas a nivel nacional, juntas en una sola noche en Casa Fandango, un restobar y centro de shows de La Paz. Un formato doble que le da al público dos estilos distintos por el mismo boleto.</p>
+          <dl><div><dt>Venue</dt><dd>Casa Fandango</dd></div><div><dt>Formato</dt><dd>Show doble</dd></div><div><dt>Boletos</dt><dd>Venta en línea</dd></div></dl>
+        </div>
+      </article>
+      <article class="case">
+        <div class="case-img"><img src="assets/white-mirage-marella.jpg" alt="Cartel de White Mirage con Tom Breu en Marella Cabo" loading="lazy"></div>
+        <div>
+          <div class="meta"><span>Música electrónica</span><span>San José del Cabo</span></div>
+          <h3>White Mirage con Tom Breu</h3>
+          <p>Una day party en Marella Cabo con Tom Breu, del sello alemán Get Physical, como headliner, acompañado por Egregor, Black Jesus en vinyl set y un set híbrido con guitarra. La noche se armó junto con marcas como Iztic Tequila y Moët &amp; Chandon.</p>
+          <dl><div><dt>Venue</dt><dd>Marella Cabo</dd></div><div><dt>Formato</dt><dd>Day party</dd></div><div><dt>Aliados</dt><dd>Marcas premium</dd></div></dl>
+        </div>
+      </article>
+      <article class="case">
+        <div class="case-img"><img src="assets/cojo-feliz-teatro-juarez.jpg" alt="Cartel de Cojo Feliz, La Peor Pluma de México, en Teatro Juárez" loading="lazy"></div>
+        <div>
+          <div class="meta"><span>Stand-up comedy</span><span>La Paz</span></div>
+          <h3>Cojo Feliz en Teatro Juárez</h3>
+          <p>La gira "La Peor Pluma de México" en un teatro, con boletaje en línea y promoción con otras productoras de la región.</p>
+          <dl><div><dt>Venue</dt><dd>Teatro Juárez</dd></div><div><dt>Formato</dt><dd>Teatro</dd></div><div><dt>Boletos</dt><dd>Arema.mx</dd></div></dl>
+        </div>
+      </article>
+    </div>
+
+    <div class="archive">
+      <h3>También en nuestra historia</h3>
+      <div class="arow"><img src="assets/ofarrill-maria-corona.jpg" alt="" loading="lazy"><div><strong>Ricardo O’Farrill: Corto Circuito, La Última Ronda</strong><span>María Corona · Los Cabos</span></div><em>Stand-up</em></div>
+      <div class="arow"><img src="assets/despechadisima-bocca-morada.jpg" alt="" loading="lazy"><div><strong>Despechadísima Tour: Hugo Blanquet &amp; Miss Diamond</strong><span>Bocca Morada · Los Cabos</span></div><em>Show</em></div>
+      <div class="arow"><img src="assets/omar-moreno-la-tuna.jpg" alt="" loading="lazy"><div><strong>Omar Moreno: Tour 2026</strong><span>La Tuna Restaurant &amp; Bar</span></div><em>Stand-up</em></div>
+    </div>
+  </div>
+</section>
+
+<!-- CUE 07 · FORMATOS PROPIOS -->
+<section class="props" id="formatos">
+  <div class="wrap">
+    <p class="cue"><b>Cue 07</b> Formatos propios</p>
+    <h2 class="h2" style="margin-top:20px;max-width:18ch">Shows que creamos y que se repiten</h2>
+    <p class="lead" style="margin-top:20px">Además de traer artistas, creamos formatos con identidad propia que se repiten cada temporada y crean público fiel.</p>
+    <div class="props-grid">
+      <article class="prop">
+        <span class="kind">Circuito semanal</span>
+        <h3>Los Cabos ⇄ La Paz</h3>
+        <p>Una gira que rota cada cuatro semanas. Cada show se presenta en las dos plazas.</p>
+        <div class="cycle">
+          <div><b>SEM 1</b>Comedia en español</div>
+          <div><b>SEM 2</b>English comedy</div>
+          <div><b>SEM 3</b>DJ Pro</div>
+          <div><b>SEM 4</b>Show especial</div>
+        </div>
+      </article>
+      <article class="prop">
+        <span class="kind">Stand-up</span>
+        <h3>Juice Comedy</h3>
+        <p>Stand-up profesional en español e inglés, con comediantes que ya funcionan y uno que otro invitado sorpresa.</p>
+      </article>
+      <article class="prop">
+        <span class="kind">Talento local · cada 15 días</span>
+        <h3>Open Mic + Concurso</h3>
+        <p>Un open mic con reglas claras y un concurso con premio de $1,000 MXN. Quien gana abre el siguiente show profesional.</p>
+      </article>
+      <article class="prop">
+        <span class="kind">Música en vivo</span>
+        <h3>THE JAM</h3>
+        <p>Sesiones en vivo para que los músicos locales se junten, colaboren y formen comunidad. De aquí salen los músicos para nuestras producciones.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- CUE 08 · POR QUÉ -->
+<section id="por-que">
+  <div class="wrap">
+    <p class="cue"><b>Cue 08</b> Por qué Demetrio</p>
+    <h2 class="h2" style="margin-top:20px">Conocemos el escenario. Y el de al lado.</h2>
+    <div class="why">
+      <div><h3>Dos plazas, un solo equipo</h3><p>Trabajamos en Los Cabos y en La Paz. Un artista puede hacer dos fechas en la misma gira y repartir los costos de traslado.</p></div>
+      <div><h3>Red de venues, artistas y marcas</h3><p>Ya trabajamos con teatros, beach clubs, restobares, boleteras y marcas de la región.</p></div>
+      <div><h3>Producción con costos controlados</h3><p>Producción ligera para las fechas recurrentes y producción premium cuando el artista lo pide. Siempre con presupuesto claro.</p></div>
+      <div><h3>Resultados en números</h3><p>Después de cada fecha te mandamos un reporte con asistencia, ventas y consumo para decidir la siguiente con datos.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CUE 09 · FAQ -->
+<section id="preguntas" style="padding-top:0">
+  <div class="wrap">
+    <p class="cue"><b>Cue 09</b> Preguntas frecuentes</p>
+    <h2 class="h2" style="margin-top:20px;margin-bottom:32px">Antes de levantar el telón</h2>
+    <div class="faq">
+      <details><summary>¿Con cuánta anticipación debo contactarlos?</summary><p>Para un show con artista invitado, lo ideal es de 6 a 8 semanas antes. Para un evento privado pequeño podemos trabajar con menos tiempo, según la disponibilidad del artista.</p></details>
+      <details><summary>¿Qué incluye una cotización?</summary><p>Formato propuesto, opciones de artistas, producción técnica, promoción, operación y el modelo de ingresos que más te convenga: taquilla, renta, reparto con el venue o patrocinio.</p></details>
+      <details><summary>¿Ustedes venden los boletos?</summary><p>Sí. Operamos la venta en línea con boleteras de la región y la promoción en redes. Para eventos privados no hace falta boletaje.</p></details>
+      <details><summary>¿Hacen eventos en inglés?</summary><p>Sí. Tenemos una línea de comedia en inglés pensada para residentes extranjeros, visitantes y grupos corporativos internacionales.</p></details>
+      <details><summary>¿Puedo proponer a mi propio artista?</summary><p>Claro. Nosotros nos encargamos de la producción, la venta y la operación alrededor del artista que tú elijas.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- CUE 10 · COTIZA -->
+<section class="quote" id="cotiza">
+  <div class="wrap quote-grid">
+    <div>
+      <p class="cue"><b>Cue 10</b> Cotiza tu evento</p>
+      <h2 class="h2" style="margin-top:20px">Cuéntanos tu idea. Te respondemos con una propuesta.</h2>
+      <p class="lead" style="margin-top:20px">Son tres pasos y menos de un minuto. Al final se abre WhatsApp con tu mensaje ya escrito, solo le das enviar.</p>
+      <div class="direct">
+        <span>¿Prefieres escribir directo?</span>
+        <div>WhatsApp: <a href="https://wa.me/52XXXXXXXXXX" id="waDirect">[NÚMERO]</a></div>
+        <div>Correo: <a href="mailto:hola@demetrio.mx">hola@demetrio.mx</a></div>
+        <div>Instagram: <a href="https://www.instagram.com/demetrio_cabo">@demetrio_cabo</a></div>
+      </div>
+    </div>
+
+    <form class="wizard" id="wizard" novalidate>
+      <div class="steps" aria-hidden="true"><div class="on" data-s="1">1 · Evento</div><div data-s="2">2 · Detalles</div><div data-s="3">3 · Contacto</div></div>
+
+      <fieldset class="step" data-step="1">
+        <legend>¿Qué necesitas?</legend>
+        <div class="choices">
+          <div class="choice"><input type="radio" name="tipo" id="c-venue" value="Programación para mi venue"><label for="c-venue">Programación para mi venue<small>Shows recurrentes</small></label></div>
+          <div class="choice"><input type="radio" name="tipo" id="c-privado" value="Evento privado o corporativo"><label for="c-privado">Evento privado o corporativo<small>Empresa, celebración, grupo</small></label></div>
+          <div class="choice"><input type="radio" name="tipo" id="c-marca" value="Patrocinio de marca"><label for="c-marca">Patrocinio de marca<small>Por show o temporada</small></label></div>
+          <div class="choice"><input type="radio" name="tipo" id="c-talento" value="Soy artista y quiero presentarme"><label for="c-talento">Soy artista<small>Gira, Open Mic o THE JAM</small></label></div>
+        </div>
+        <fieldset class="sub">
+          <legend style="font-size:16px;margin-bottom:12px">¿Qué tipo de show?</legend>
+          <div class="choices">
+            <div class="choice"><input type="radio" name="show" id="s-comedia" value="Stand-up"><label for="s-comedia">Stand-up</label></div>
+            <div class="choice"><input type="radio" name="show" id="s-dj" value="DJ / música electrónica"><label for="s-dj">DJ / electrónica</label></div>
+            <div class="choice"><input type="radio" name="show" id="s-vivo" value="Música en vivo"><label for="s-vivo">Música en vivo</label></div>
+            <div class="choice"><input type="radio" name="show" id="s-nose" value="Aún no sé, recomiéndenme"><label for="s-nose">Recomiéndenme</label></div>
+          </div>
+        </fieldset>
+      </fieldset>
+
+      <fieldset class="step" data-step="2" hidden>
+        <legend>Detalles del evento</legend>
+        <div class="fields">
+          <div class="field"><label for="f-ciudad">Ciudad</label><select id="f-ciudad" name="ciudad"><option>Los Cabos</option><option>La Paz</option><option>Otra ciudad</option></select></div>
+          <div class="field"><label for="f-fecha">Fecha aproximada</label><input id="f-fecha" name="fecha" type="text" placeholder="Ej. marzo 2027"></div>
+          <div class="field"><label for="f-personas">Asistentes</label><select id="f-personas" name="personas"><option>Menos de 100</option><option>100 a 300</option><option>300 a 1,000</option><option>Más de 1,000</option><option>Aún no sé</option></select></div>
+          <div class="field"><label for="f-idioma">Idioma del público</label><select id="f-idioma" name="idioma"><option>Español</option><option>Inglés</option><option>Bilingüe</option></select></div>
+          <div class="field full"><label for="f-idea">Cuéntanos tu idea</label><textarea id="f-idea" name="idea" placeholder="Venue, presupuesto aproximado, artista que te gustaría…"></textarea></div>
+        </div>
+      </fieldset>
+
+      <fieldset class="step" data-step="3" hidden>
+        <legend>¿Cómo te contactamos?</legend>
+        <div class="fields">
+          <div class="field"><label for="f-nombre">Nombre</label><input id="f-nombre" name="nombre" type="text" autocomplete="name"></div>
+          <div class="field"><label for="f-empresa">Empresa o venue</label><input id="f-empresa" name="empresa" type="text" autocomplete="organization"></div>
+          <div class="field full"><label for="f-tel">WhatsApp</label><input id="f-tel" name="tel" type="tel" autocomplete="tel" placeholder="624 000 0000"></div>
+        </div>
+      </fieldset>
+
+      <div class="step" data-step="4" hidden>
+        <h3>Tu solicitud está lista</h3>
+        <p class="note" style="margin:0 0 16px">Revísala y envíala por WhatsApp. Te respondemos con una propuesta.</p>
+        <div class="summary" id="summary"></div>
+        <div class="done-actions">
+          <a class="btn btn-primary" id="waSend" href="#">Enviar por WhatsApp</a>
+          <button type="button" class="btn btn-ghost" id="copyBtn">Copiar mensaje</button>
+        </div>
+        <p class="note" id="copyNote" aria-live="polite"></p>
+      </div>
+
+      <p class="err" id="err" role="alert"></p>
+      <div class="nav-steps" id="navSteps">
+        <button type="button" class="btn btn-ghost" id="back" hidden>Atrás</button>
+        <button type="button" class="btn btn-primary" id="next" style="margin-left:auto">Siguiente</button>
+      </div>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a class="logo" href="#inicio"><b>DEMETRIO</b><span>ENTERTAINMENT</span></a>
+        <p>Productora, comercialización, operación y desarrollo de espectáculos. Los Cabos y La Paz, Baja California Sur.</p>
+      </div>
+      <div><h3>Productora</h3><ul><li><a href="#servicios">Servicios</a></li><li><a href="#proceso">Cómo trabajamos</a></li><li><a href="#eventos">Eventos</a></li><li><a href="#formatos">Formatos propios</a></li></ul></div>
+      <div><h3>Público</h3><ul><li><a href="https://linktr.ee/demetrio.mx">Boletos y próximos shows</a></li><li><a href="#formatos">Open Mic</a></li><li><a href="#formatos">THE JAM</a></li></ul></div>
+      <div><h3>Síguenos</h3><ul><li><a href="https://www.instagram.com/demetrio_cabo">Instagram</a></li><li><a href="https://www.facebook.com/share/1KTqKJ4yQM/">Facebook</a></li><li><a href="#cotiza">Contacto</a></li></ul></div>
+    </div>
+    <div class="legal"><span>© <span id="yr">2026</span> Demetrio Entertainment · demetrio.mx</span><a href="#aviso">Aviso de privacidad</a></div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // Configuración: número de WhatsApp de Demetrio (código de país + número, sin espacios)
+  var WHATSAPP = "52XXXXXXXXXX";
+
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  document.getElementById('waDirect').href = 'https://wa.me/' + WHATSAPP;
+
+  // Menú móvil
+  var mb = document.getElementById('menuBtn'), nl = document.getElementById('navLinks');
+  mb.addEventListener('click', function(){ var o = nl.classList.toggle('open'); mb.setAttribute('aria-expanded', o); });
+  nl.addEventListener('click', function(e){ if(e.target.closest('a')){ nl.classList.remove('open'); mb.setAttribute('aria-expanded','false'); } });
+
+  // Reflector del hero
+  var hero = document.querySelector('.hero');
+  if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    hero.addEventListener('pointermove', function(e){
+      var r = hero.getBoundingClientRect();
+      hero.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      hero.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    });
+  }
+
+  // Pestañas de audiencia
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('[role="tab"]'));
+  function select(t){
+    tabs.forEach(function(x){
+      var on = x === t;
+      x.setAttribute('aria-selected', on); x.tabIndex = on ? 0 : -1;
+      document.getElementById(x.getAttribute('aria-controls')).hidden = !on;
+    });
+  }
+  tabs.forEach(function(t, i){
+    t.addEventListener('click', function(){ select(t); });
+    t.addEventListener('keydown', function(e){
+      var n = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+      if(n){ e.preventDefault(); var nt = tabs[(i + n + tabs.length) % tabs.length]; select(nt); nt.focus(); }
+    });
+  });
+
+  // Preseleccionar tipo desde los CTA de audiencia
+  var map = { venue:'c-venue', marca:'c-marca', privado:'c-privado', talento:'c-talento' };
+  document.querySelectorAll('[data-pick]').forEach(function(a){
+    a.addEventListener('click', function(){ var el = document.getElementById(map[a.dataset.pick]); if(el) el.checked = true; });
+  });
+
+  // Cotizador
+  var form = document.getElementById('wizard'), step = 1;
+  var steps = form.querySelectorAll('[data-step]'), dots = form.querySelectorAll('.steps div');
+  var back = document.getElementById('back'), next = document.getElementById('next'), err = document.getElementById('err');
+  function val(n){ var el = form.elements[n]; if(!el) return ''; if(el.length && !el.tagName){ var c = form.querySelector('[name="'+n+'"]:checked'); return c ? c.value : ''; } return (el.value || '').trim(); }
+  function message(){
+    var lines = [
+      'Hola Demetrio, quiero cotizar un evento.',
+      '',
+      'Necesito: ' + (val('tipo') || '—'),
+      'Show: ' + (val('show') || '—'),
+      'Ciudad: ' + val('ciudad'),
+      'Fecha: ' + (val('fecha') || 'por definir'),
+      'Asistentes: ' + val('personas'),
+      'Idioma: ' + val('idioma'),
+      'Idea: ' + (val('idea') || '—'),
+      '',
+      'Nombre: ' + val('nombre'),
+      'Empresa / venue: ' + (val('empresa') || '—'),
+      'WhatsApp: ' + val('tel')
+    ];
+    return lines.join('\n');
+  }
+  function show(s){
+    step = s;
+    steps.forEach(function(el){ el.hidden = +el.dataset.step !== s; });
+    dots.forEach(function(d){ d.classList.toggle('on', +d.dataset.s <= Math.min(s,3)); });
+    back.hidden = s === 1 || s === 4;
+    next.hidden = s === 4;
+    next.textContent = s === 3 ? 'Ver mi solicitud' : 'Siguiente';
+    err.textContent = '';
+    if(s === 4){
+      var m = message();
+      document.getElementById('summary').textContent = m;
+      document.getElementById('waSend').href = 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(m);
+    }
+  }
+  next.addEventListener('click', function(){
+    if(step === 1 && !val('tipo')){ err.textContent = 'Elige qué necesitas para continuar.'; return; }
+    if(step === 3 && (!val('nombre') || !val('tel'))){ err.textContent = 'Escribe tu nombre y tu WhatsApp para que podamos responderte.'; return; }
+    show(step + 1);
+    form.scrollIntoView({behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block:'start'});
+  });
+  back.addEventListener('click', function(){ show(step - 1); });
+  form.addEventListener('submit', function(e){ e.preventDefault(); });
+  document.getElementById('copyBtn').addEventListener('click', function(){
+    var note = document.getElementById('copyNote');
+    try{
+      navigator.clipboard.writeText(message()).then(function(){ note.textContent = 'Mensaje copiado. Pégalo en WhatsApp o en un correo a hola@demetrio.mx.'; }, function(){ note.textContent = 'No se pudo copiar. Selecciona el texto de arriba y cópialo.'; });
+    }catch(x){ note.textContent = 'No se pudo copiar. Selecciona el texto de arriba y cópialo.'; }
+  });
+})();
+</script>
+</body>
+</html>

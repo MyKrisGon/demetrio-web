@@ -1,0 +1,44 @@
+# Publica el sitio en HostGator por FTP cada vez que hay un push.
+#   staging -> carpeta de pruebas (DEPLOY_DIR_STAGING), p. ej. demetrio.siemex.xyz
+#   main    -> carpeta de producción (DEPLOY_DIR_PROD), demetrio.mx
+# Secrets requeridos en GitHub (Settings > Secrets and variables > Actions):
+#   FTP_SERVER, FTP_USERNAME, FTP_PASSWORD, DEPLOY_DIR_PROD, DEPLOY_DIR_STAGING
+name: Deploy a HostGator
+
+on:
+  push:
+    branches: [main, staging]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-${{ github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Elegir carpeta destino
+        id: dest
+        run: |
+          if [ "${{ github.ref_name }}" = "main" ]; then
+            echo "dir=${{ secrets.DEPLOY_DIR_PROD }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "dir=${{ secrets.DEPLOY_DIR_STAGING }}" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Subir por FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          server-dir: ${{ steps.dest.outputs.dir }}
+          exclude: |
+            **/.git*
+            **/.git*/**
+            .github/**
+            README.md
