@@ -1,0 +1,47 @@
+[
+  {
+    "slug": "fran-berchel",
+    "nombre": "Franberchel",
+    "ciudad": "Los Cabos, B.C.S.",
+    "desde": 2014,
+    "tagline": "House, tech house y beach club sets desde Los Cabos para todo México.",
+    "generos": ["House", "Tech House", "Deep House", "Progressive"],
+    "eventos": ["Festivales", "Beach clubs", "Clubs", "Bodas", "Eventos privados", "Corporativos"],
+    "datos": [
+      {"valor": "Desde 2014", "texto": "DJ profesional"},
+      {"valor": "OMNIA Los Cabos", "texto": "Fue DJ residente (Hakkasan Group)"},
+      {"valor": "54 podcasts", "texto": "Feel Good Fridays at OMNIA"},
+      {"valor": "6 ciudades", "texto": "Se ha presentado en todo México"}
+    ],
+    "bio": [
+      "Franberchel es DJ profesional desde 2014 y ha tocado en escenarios importantes de todo México.",
+      "Uno de los momentos clave de su carrera fue convertirse en DJ residente de OMNIA Los Cabos, el beach club del grupo Hakkasan, donde compartió cabina con artistas internacionales como Martin Garrix, Kaskade, Oliver Heldens y Claptone. Ahí grabó 54 podcasts de sus sets en Feel Good Fridays at OMNIA.",
+      "También ha participado en causas como Heroes Fest, un festival para recaudar fondos a beneficio de niños con necesidades especiales."
+    ],
+    "bio_en": [
+      "Franberchel has been a professional DJ since 2014, playing major stages across Mexico.",
+      "A career highlight was becoming a resident DJ at OMNIA Los Cabos, the Hakkasan Group beach club, where he shared the stage with international artists such as Martin Garrix, Kaskade, Oliver Heldens and Claptone, and recorded 54 podcasts of his Feel Good Fridays at OMNIA sets.",
+      "He has also supported charitable causes such as Heroes Fest, a festival raising funds for children with special needs."
+    ],
+    "escenario": ["Martin Garrix", "Kaskade", "Oliver Heldens", "Claptone", "Morgan Page", "Chuckie", "Gryffin", "Loud Luxury", "Matoma", "MAKJ", "Party Favor", "Plastik Funk", "Le Twins", "Mariana Bo", "Mark Etenson"],
+    "ciudades": ["Los Cabos", "Guadalajara", "Monterrey", "Puebla", "Ciudad de México", "Chihuahua"],
+    "sets": [
+      {"tipo": "youtube", "id": "kxkOSv51Thc", "titulo": "Set en video"},
+      {"tipo": "soundcloud", "url": "https://soundcloud.com/franberchel/weekend-vives-52", "titulo": "Weekend Vives #52"},
+      {"tipo": "soundcloud", "url": "https://soundcloud.com/franberchel/ghost-n-stuff-franberchel-deadmau5", "titulo": "Ghost 'N' Stuff (Franberchel edit)"}
+    ],
+    "rider": [
+      {"titulo": "Equipo", "items": ["Pioneer CDJ Nexus 3000 o NX2", "Mixer Pioneer DJM-900 NX2 o superior"]},
+      {"titulo": "Monitoreo", "items": ["2 bocinas de 12\" (Mackie, Electro-Voice, QSC o dB Technologies)"]}
+    ],
+    "redes": [
+      {"nombre": "Instagram", "url": "https://www.instagram.com/franberchell"},
+      {"nombre": "SoundCloud", "url": "https://soundcloud.com/franberchel"},
+      {"nombre": "Mixcloud", "url": "https://www.mixcloud.com/Franberchel/"},
+      {"nombre": "YouTube", "url": "https://youtube.com/@franberchelofficial2048"}
+    ],
+    "imagen_card": "card.jpg",
+    "imagen_retrato": "retrato.jpg",
+    "galeria": ["g1.jpg", "g2.jpg", "g3.jpg", "g4.jpg", "g5.jpg", "g6.jpg", "g7.jpg"]
+  }
+]

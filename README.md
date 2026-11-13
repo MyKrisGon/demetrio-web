@@ -31,3 +31,11 @@ En GitHub › Settings › Secrets and variables › Actions, crea estos secrets
 - El correo de contacto (hoy dice hola@demetrio.mx).
 - El logo en SVG o PNG.
 - La página de aviso de privacidad.
+
+## DJs (demetrio.mx/djs)
+
+El roster y los perfiles se generan a partir de `data/djs.json`:
+
+1. Agrega o edita la ficha del DJ en `data/djs.json` y sus fotos en `assets/djs/<slug>/`.
+2. Corre `python3 tools/build_djs.py`. Regenera `djs/` y `sitemap.xml`.
+3. Haz commit y push.
