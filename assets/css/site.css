@@ -47,12 +47,12 @@ section{padding-block:clamp(72px,10vw,128px)}
 .logo:hover{color:var(--hueso)}
 .logo img{height:38px;width:auto}
 .foot .logo img{height:auto;width:min(260px,100%)}
-.links{display:flex;align-items:center;gap:28px;font-size:16px;font-weight:500}
+.links{display:flex;align-items:center;gap:24px;font-size:16px;font-weight:500;white-space:nowrap}
 .links a:not(.btn){color:var(--hueso);text-decoration:none}
 .links a:not(.btn):hover{color:var(--reflector)}
 .links .btn{min-height:44px;padding:0 20px;font-size:15px}
 .menu-btn{display:none;background:none;border:1.5px solid var(--linea);color:var(--hueso);border-radius:12px;min-height:44px;padding:0 14px;font:600 15px var(--body);cursor:pointer}
-@media (max-width:900px){
+@media (max-width:1180px){
   .menu-btn{display:inline-flex;align-items:center}
   .links{display:none;position:absolute;left:0;right:0;top:72px;flex-direction:column;align-items:stretch;gap:0;background:var(--noche);border-bottom:1px solid var(--linea);padding:8px var(--gutter) 20px}
   .links.open{display:flex}
