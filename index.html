@@ -406,7 +406,7 @@
       <div class="direct">
         <span>¿Prefieres escribir directo?</span>
         <div>WhatsApp: <a href="https://wa.me/526242454573" id="waDirect">624 245 4573</a></div>
-        <div>Correo: <a href="mailto:hola@demetrio.mx">hola@demetrio.mx</a></div>
+        <div>Correo: <a href="mailto:contacto@demetrio.mx">contacto@demetrio.mx</a></div>
         <div>Instagram: <a href="https://www.instagram.com/demetrio.mx">@demetrio.mx</a></div>
       </div>
     </div>
@@ -590,7 +590,7 @@
   document.getElementById('copyBtn').addEventListener('click', function(){
     var note = document.getElementById('copyNote');
     try{
-      navigator.clipboard.writeText(message()).then(function(){ note.textContent = 'Mensaje copiado. Pégalo en WhatsApp o en un correo a hola@demetrio.mx.'; }, function(){ note.textContent = 'No se pudo copiar. Selecciona el texto de arriba y cópialo.'; });
+      navigator.clipboard.writeText(message()).then(function(){ note.textContent = 'Mensaje copiado. Pégalo en WhatsApp o en un correo a contacto@demetrio.mx.'; }, function(){ note.textContent = 'No se pudo copiar. Selecciona el texto de arriba y cópialo.'; });
     }catch(x){ note.textContent = 'No se pudo copiar. Selecciona el texto de arriba y cópialo.'; }
   });
 })();

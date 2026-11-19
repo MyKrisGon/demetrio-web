@@ -28,7 +28,7 @@ En GitHub › Settings › Secrets and variables › Actions, crea estos secrets
 ## Pendientes de contenido
 
 - El número de WhatsApp en `index.html` (la constante `WHATSAPP` y el enlace directo).
-- El correo de contacto (hoy dice hola@demetrio.mx).
+- El correo de contacto (hoy dice contacto@demetrio.mx).
 - El logo en SVG o PNG.
 - La página de aviso de privacidad.
 
