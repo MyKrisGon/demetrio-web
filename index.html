@@ -24,7 +24,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Hanken+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/css/site.css?v=2">
+<link rel="stylesheet" href="/assets/css/site.css?v=3">
 </head>
 <body>
 
@@ -143,6 +143,26 @@
     <div class="dj-teaser">
       <div><h3>¿Buscas DJ para tu evento?</h3><p>Conoce nuestro roster, escucha sus sets y contrátalos directo.</p></div>
       <a class="btn btn-primary" href="/djs/">Ver DJs <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- EN VIVO -->
+<section class="envivo" id="en-vivo">
+  <div class="wrap envivo-grid">
+    <div class="envivo-copy">
+      <p class="cue"><b>En vivo</b> Noches Demetrio</p>
+      <h2 class="h2" style="margin-top:20px">Luces, música y gente. Así se vive.</h2>
+      <p class="lead" style="margin-top:20px">Escenario, iluminación y ambiente para que tu evento se vea y se sienta en grande, desde un restobar hasta un venue completo.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="#cotiza">Quiero un evento así <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <button type="button" class="btn btn-ghost" id="reelToggle" aria-pressed="false">Pausar videos</button>
+      </div>
+    </div>
+    <div class="reels">
+        <figure class="reel"><video muted loop playsinline preload="none" poster="assets/video/envivo-1.jpg" aria-label="Video de un evento de Demetrio: instalaciones de luz en un venue"><source src="assets/video/envivo-1.mp4" type="video/mp4"></video></figure>
+        <figure class="reel"><video muted loop playsinline preload="none" poster="assets/video/envivo-2.jpg" aria-label="Video de un evento de Demetrio: túnel de luces"><source src="assets/video/envivo-2.mp4" type="video/mp4"></video></figure>
+        <figure class="reel"><video muted loop playsinline preload="none" poster="assets/video/envivo-3.jpg" aria-label="Video de un evento de Demetrio: escenario y luces"><source src="assets/video/envivo-3.mp4" type="video/mp4"></video></figure>
     </div>
   </div>
 </section>
@@ -541,6 +561,25 @@
   document.querySelectorAll('[data-ev]').forEach(function(a){
     a.addEventListener('click', function(){ var el = document.getElementById(a.dataset.ev); if(el) el.checked = true; });
   });
+
+  // Videos "En vivo": se cargan y reproducen solo cuando la sección está a la vista
+  (function(){
+    var sec = document.getElementById('en-vivo'); if(!sec) return;
+    var vids = Array.prototype.slice.call(sec.querySelectorAll('video'));
+    var btn = document.getElementById('reelToggle');
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var paused = reduce, visible = false;
+    function sync(){
+      vids.forEach(function(v){ if(visible && !paused){ var p = v.play(); if(p && p.catch) p.catch(function(){}); } else { v.pause(); } });
+      btn.textContent = paused ? 'Reproducir videos' : 'Pausar videos';
+      btn.setAttribute('aria-pressed', paused ? 'true' : 'false');
+    }
+    btn.addEventListener('click', function(){ paused = !paused; sync(); });
+    if('IntersectionObserver' in window){
+      new IntersectionObserver(function(es){ visible = es[0].isIntersecting; sync(); }, {threshold: 0.25}).observe(sec);
+    } else { visible = true; sync(); }
+    sync();
+  })();
 
   // Cotizador
   var form = document.getElementById('wizard'), step = 1;

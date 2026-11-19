@@ -14,7 +14,7 @@ from urllib.parse import quote
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 WHATSAPP = "526242454573"
 SITE = "https://demetrio.mx"
-CSS_V = "2"
+CSS_V = "3"
 
 e = lambda s: html.escape(str(s), quote=True)
 
