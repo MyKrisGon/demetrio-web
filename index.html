@@ -24,7 +24,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Hanken+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/css/site.css?v=4">
+<link rel="stylesheet" href="/assets/css/site.css?v=5">
 </head>
 <body>
 
@@ -48,6 +48,9 @@
 <main>
 <!-- CUE 01 · APERTURA -->
 <section class="hero" id="inicio">
+  <div class="hero-media" aria-hidden="true">
+    <video id="heroVid" muted loop playsinline preload="metadata" poster="assets/video/hero-loop.jpg"><source src="assets/video/hero-loop.mp4" type="video/mp4"></video>
+  </div>
   <div class="wrap hero-grid">
     <div>
       <p class="cue"><b>Productora de espectáculos</b> Los Cabos · La Paz</p>
@@ -56,7 +59,7 @@
       <div class="hero-ctas">
         <a class="btn btn-primary" href="#cotiza">Cotiza tu evento
           <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        <a class="btn btn-ghost" href="#para-quien">¿Qué podemos hacer por ti?</a>
+        <button type="button" class="btn btn-ghost" id="openVideo"><svg class="arrow" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg> Ver el video</button>
       </div>
     </div>
     <aside class="ticket" aria-label="Pase de producción">
@@ -497,6 +500,13 @@
 </section>
 </main>
 
+<dialog class="vid-dialog" id="vidDialog" aria-label="Video de un evento de Demetrio Entertainment">
+  <button type="button" class="vid-close" id="closeVideo" aria-label="Cerrar video">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+  <video id="fullVid" controls playsinline preload="none" poster="assets/video/demetrio-dic.jpg"><source src="assets/video/demetrio-dic.mp4" type="video/mp4"></video>
+</dialog>
+
 <footer>
   <div class="wrap">
     <div class="foot">
@@ -561,6 +571,25 @@
   document.querySelectorAll('[data-ev]').forEach(function(a){
     a.addEventListener('click', function(){ var el = document.getElementById(a.dataset.ev); if(el) el.checked = true; });
   });
+
+  // Video de fondo de la portada y video completo en ventana
+  (function(){
+    var hv = document.getElementById('heroVid'), hero = document.querySelector('.hero');
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function playHero(){ if(reduce) return; var p = hv.play(); if(p && p.catch) p.catch(function(){}); }
+    if('IntersectionObserver' in window){
+      new IntersectionObserver(function(es){ es[0].isIntersecting ? playHero() : hv.pause(); }, {threshold: 0.1}).observe(hero);
+    } else { playHero(); }
+    var dlg = document.getElementById('vidDialog'), fv = document.getElementById('fullVid');
+    document.getElementById('openVideo').addEventListener('click', function(){
+      if(dlg.showModal){ dlg.showModal(); } else { dlg.setAttribute('open',''); }
+      hv.pause(); var p = fv.play(); if(p && p.catch) p.catch(function(){});
+    });
+    function closeDlg(){ fv.pause(); if(dlg.close){ dlg.close(); } else { dlg.removeAttribute('open'); } playHero(); }
+    document.getElementById('closeVideo').addEventListener('click', closeDlg);
+    dlg.addEventListener('click', function(e){ if(e.target === dlg) closeDlg(); });
+    dlg.addEventListener('cancel', function(){ fv.pause(); playHero(); });
+  })();
 
   // Videos "En vivo": se cargan y reproducen solo cuando la sección está a la vista
   (function(){
