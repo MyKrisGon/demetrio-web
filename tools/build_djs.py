@@ -12,7 +12,7 @@ import os
 from urllib.parse import quote
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-WHATSAPP = "526242454573"
+WHATSAPP = "523334978179"
 SITE = "https://demetrio.mx"
 CSS_V = "5"
 
@@ -195,7 +195,7 @@ def profile(dj):
       <p class="lead" style="margin-top:20px">Cuéntanos la fecha y el tipo de evento. Revisamos disponibilidad y te mandamos propuesta con equipo, horario y costo.</p>
       <div class="direct">
         <span>¿Prefieres escribir directo?</span>
-        <div>WhatsApp: <a href="https://wa.me/{WHATSAPP}">624 245 4573</a></div>
+        <div>WhatsApp: <a href="https://wa.me/{WHATSAPP}">33 3497 8179</a></div>
       </div>
     </div>
     <form class="wizard" id="booking" novalidate>
@@ -205,7 +205,7 @@ def profile(dj):
         <div class="field"><label for="b-tipo">Tipo de evento</label><select id="b-tipo" name="tipo">{opts_ev}</select></div>
         <div class="field"><label for="b-horas">Horas de set</label><select id="b-horas" name="horas"><option>2 horas</option><option>3 horas</option><option>4 horas</option><option>5 horas o más</option></select></div>
         <div class="field"><label for="b-nombre">Tu nombre</label><input id="b-nombre" name="nombre" type="text" autocomplete="name"></div>
-        <div class="field"><label for="b-tel">Tu WhatsApp</label><input id="b-tel" name="tel" type="tel" autocomplete="tel" placeholder="624 000 0000"></div>
+        <div class="field"><label for="b-tel">Tu WhatsApp</label><input id="b-tel" name="tel" type="tel" autocomplete="tel" placeholder="Tu número a 10 dígitos"></div>
         <div class="field full"><label for="b-det">Detalles</label><textarea id="b-det" name="det" placeholder="Venue, número de invitados, si ya hay equipo de audio…"></textarea></div>
       </div>
       <p class="err" id="bErr" role="alert"></p>
